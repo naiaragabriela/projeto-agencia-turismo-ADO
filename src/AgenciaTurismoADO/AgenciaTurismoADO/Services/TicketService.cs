@@ -108,8 +108,8 @@ namespace AgenciaTurismoADO.Services
                              "CostTicket = @CostTicket " +
                              " where Id = @id";
             SqlCommand commandUpdate = new SqlCommand(_update, conn);
-            commandUpdate.Parameters.Add(new SqlParameter("@IdSource", ticket.Origin));
-            commandUpdate.Parameters.Add(new SqlParameter("@IdDestination", ticket.Destination));
+            commandUpdate.Parameters.Add(new SqlParameter("@IdSource", ticket.Origin.Id));
+            commandUpdate.Parameters.Add(new SqlParameter("@IdDestination", ticket.Destination.Id));
             commandUpdate.Parameters.Add(new SqlParameter("@CostTicket", ticket.CostTicket));
 
             return commandUpdate.ExecuteNonQuery();

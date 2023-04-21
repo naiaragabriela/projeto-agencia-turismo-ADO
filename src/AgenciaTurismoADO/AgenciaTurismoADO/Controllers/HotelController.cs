@@ -24,7 +24,9 @@ namespace AgenciaTurismoADO.Controllers
         }
 
         public int Update(Hotel hotel)
+
         {
+            new AddressController().Update(hotel.Address);
             return new HotelService().Update(hotel);
         }
 
