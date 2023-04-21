@@ -310,7 +310,7 @@ internal class Program
 
         #region UPDATE HOTEL
 
-        if (new ClientController().Update(clientOne) > 0)
+        if (new HotelController().Update(hotel) > 0)
 
             Console.WriteLine("Sucesso! Update completo!");
         else
@@ -320,6 +320,11 @@ internal class Program
 
         #region DELETE HOTEL
 
+        if (new HotelController().Delete(8) > 0)
+
+            Console.WriteLine("Sucesso! Delete completo!");
+        else
+            Console.WriteLine("Erro ao inserir registro");
 
         #endregion
 
