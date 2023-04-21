@@ -25,7 +25,7 @@ namespace AgenciaTurismoADO.Models
                     "\nBairro: " + Neighborhood +
                     "\nCEP: " + PostalCode +
                     "\nComplemento: " + Complement +
-                    "\nCidade: " + City.ToString();
+                    "\n" + City.ToString();
         }
     }
 }

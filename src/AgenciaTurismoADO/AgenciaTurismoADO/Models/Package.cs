@@ -23,7 +23,7 @@ namespace AgenciaTurismoADO.Models
             return "Custo do Pacote: " + Cost +
                    "\nHotel: " + Hotel.ToString() +
                    "\n Passagem: " + Ticket.ToString() +
-                   "\n Cliente do Pacote: " + Client.ToString();
+                   "\n Cliente: " + Client.ToString();
 
         }
     
