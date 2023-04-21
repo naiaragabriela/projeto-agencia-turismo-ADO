@@ -60,8 +60,9 @@ namespace AgenciaTurismoADO.Services
             StringBuilder sb = new StringBuilder();
 
             sb.Append("select hotel.Id, ");
-            sb.Append("       client.Name, ");
-            sb.Append("       client.Phone, ");
+            sb.Append("       hotel.NameHotel, ");
+            sb.Append("       hotel.CostHotel, ");
+            sb.Append("       hotel.Address, ");
             sb.Append("       address.Street, ");
             sb.Append("       address.Number, ");
             sb.Append("       address.Neighborhood, ");
@@ -125,4 +126,4 @@ namespace AgenciaTurismoADO.Services
 
     }
 }
-}
+

@@ -58,6 +58,8 @@ namespace AgenciaTurismoADO.Services
             sb.Append("select ticket.Id, ");
             sb.Append("       ticket.DtRegistration,");
             sb.Append("       ticket.CostTicket");
+            sb.Append("       ticket.Origin, ");
+            sb.Append("       ticket.Destination, ");
             sb.Append("       address.Street, ");
             sb.Append("       address.Number, ");
             sb.Append("       address.Neighborhood, ");

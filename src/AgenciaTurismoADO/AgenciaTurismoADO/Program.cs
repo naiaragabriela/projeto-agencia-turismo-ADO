@@ -185,7 +185,7 @@ internal class Program
             Name = "Gustavo",
             Phone = "7070-7070",
             DtRegistration = DateTime.Now,
-            Address = addressSource
+            Address = addressOrigin
         };
 
         Client clientTwo = new Client()
@@ -340,8 +340,8 @@ internal class Program
         Package package = new Package()
         {
             Hotel = hotel,
-            Ticket = ticket,
-            Client = client,
+            Ticket = ticketOne,
+            Client = clientOne,
             Cost = 500,
             DtRegistration = DateTime.Now,
         };
