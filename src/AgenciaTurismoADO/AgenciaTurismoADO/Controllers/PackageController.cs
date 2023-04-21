@@ -26,6 +26,10 @@ namespace AgenciaTurismoADO.Controllers
 
         public int Update(Package package)
         {
+            new HotelController().Update(package.Hotel);
+            new TicketController().Update(package.Ticket);
+            new ClientController().Update(package.Client);
+
             return new PackageService().Update(package);
         }
 

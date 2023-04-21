@@ -168,9 +168,9 @@ namespace AgenciaTurismoADO.Services
 
                 SqlCommand commandUpdate = new SqlCommand(_update, conn);   
 
-                    commandUpdate.Parameters.Add(new SqlParameter("@IdHotel", package.Hotel));
-                    commandUpdate.Parameters.Add(new SqlParameter("@IdTicket", package.Ticket));
-                    commandUpdate.Parameters.Add(new SqlParameter("@IdClient", package.Client));
+                    commandUpdate.Parameters.Add(new SqlParameter("@IdHotel", package.Hotel.Id));
+                    commandUpdate.Parameters.Add(new SqlParameter("@IdTicket", package.Ticket.Id));
+                    commandUpdate.Parameters.Add(new SqlParameter("@IdClient", package.Client.Id));
                     commandUpdate.Parameters.Add(new SqlParameter("@Cost", package.Cost));
 
                 return commandUpdate.ExecuteNonQuery();

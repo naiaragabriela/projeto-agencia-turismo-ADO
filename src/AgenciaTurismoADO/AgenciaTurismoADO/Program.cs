@@ -304,7 +304,7 @@ internal class Program
         #endregion
 
         #region SELECT HOTEL
-        new ClientController().FindAll().ForEach(x => Console.WriteLine(x + "\n\n"));
+        new HotelController().FindAll().ForEach(x => Console.WriteLine(x + "\n\n"));
 
         #endregion
 
@@ -354,12 +354,17 @@ internal class Program
         #endregion
 
         #region SELECT PACKAGE
-
+        new PackageController().FindAll().ForEach(x => Console.WriteLine(x + "\n\n"));
 
         #endregion
 
         #region UPDATE PACKAGE
 
+        if (new PackageController().Update(package) > 0)
+
+            Console.WriteLine("Sucesso! Update completo!");
+        else
+            Console.WriteLine("Erro ao inserir registro");
 
         #endregion
 
@@ -369,6 +374,11 @@ internal class Program
         #endregion
 
 
+        if (new HotelController().Delete(8) > 0)
+
+            Console.WriteLine("Sucesso! Delete completo!");
+        else
+            Console.WriteLine("Erro ao inserir registro");
 
         #endregion;
 
