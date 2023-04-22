@@ -55,8 +55,9 @@ namespace AgenciaTurismoADO.Services
 
             StringBuilder sb = new StringBuilder();
             sb.Append("select city.Id, ");
-            sb.Append("       city.NameCity ");
-            sb.Append("  FROM City c");
+            sb.Append("       city.NameCity, ");
+            sb.Append("       city.DtRegistration ");
+            sb.Append("  FROM City city");
 
 
             SqlCommand commandSelect = new SqlCommand(sb.ToString(), conn);
@@ -68,6 +69,7 @@ namespace AgenciaTurismoADO.Services
 
                 city.Id = (int)dr["Id"];
                 city.NameCity = (string)dr["NameCity"];
+                city.DtRegistration = (DateTime)dr["DtResgistration"];
 
                 cityList.Add(city);
             }

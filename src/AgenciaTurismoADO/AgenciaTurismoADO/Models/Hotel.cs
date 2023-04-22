@@ -11,7 +11,7 @@ namespace AgenciaTurismoADO.Models
       
             #region Properties
             public int Id { get; set; }
-            public string NameHotel { get; set; }
+            public string Name { get; set; }
             public Address Address { get; set; }
             public decimal CostHotel { get; set; }
             public DateTime DtRegistration { get; set; }
@@ -20,7 +20,7 @@ namespace AgenciaTurismoADO.Models
 
             public override string ToString()
             {
-                return "Nome:" + NameHotel +
+                return "Nome:" + Name +
                        "\nCusto do Hotel: " + CostHotel +
                        "\nEndereço: " + Address.ToString();
             }

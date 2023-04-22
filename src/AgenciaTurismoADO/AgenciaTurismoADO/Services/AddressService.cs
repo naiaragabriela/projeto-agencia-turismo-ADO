@@ -62,14 +62,16 @@ namespace AgenciaTurismoADO.Services
             List<Address> addressList = new List<Address>();
 
             StringBuilder sb = new StringBuilder();
-            sb.Append("select address.Id, ");
+            sb.Append("select address.Id AS IdAddress, ");
+            sb.Append("       address.DtRegistration, ");
             sb.Append("       address.Street, ");
             sb.Append("       address.Number, ");
             sb.Append("       address.Neighborhood, ");
             sb.Append("       address.PostalCode, ");
             sb.Append("       address.Complement,");
-            sb.Append("       city.Id, ");
-            sb.Append("       city.NameCity ");
+            sb.Append("       city.Id AS IdCity, ");
+            sb.Append("       city.NameCity, ");
+            sb.Append("       city.DtRegistration As CityRegistration ");
             sb.Append("       from Address address,");
             sb.Append("       City city");
             sb.Append("       where address.IdCity = city.Id");
@@ -82,7 +84,8 @@ namespace AgenciaTurismoADO.Services
             {
                 Address address = new Address();
 
-                address.Id = (int)dr["Id"];
+                address.Id = (int)dr["IdAddress"];
+                address.DtRegistration = (DateTime)dr["DtRegistration"];
                 address.Street = (string)dr["Street"];
                 address.Number = (int)dr["Number"];
                 address.Neighborhood = (string)dr["Neighborhood"];
@@ -90,8 +93,9 @@ namespace AgenciaTurismoADO.Services
                 address.Complement = (string)dr["Complement"];
                 address.City = new City()
                 {
-                    Id = (int)dr["Id"],
-                    NameCity = (string)dr["NameCity"]
+                    Id = (int)dr["IdCity"],
+                    NameCity = (string)dr["NameCity"],
+                    DtRegistration = (DateTime)dr["CityRegistration"]
                 };
 
                 addressList.Add(address);
@@ -110,7 +114,7 @@ namespace AgenciaTurismoADO.Services
                  "PostalCode = @PostalCode, " +
                  "Complement = @Complement, " +
                  "City = @IdCity "+
-                  "where id = @id";
+                 "where id = @id";
             SqlCommand commandUpdate = new SqlCommand(_update, conn);
             commandUpdate.Parameters.Add(new SqlParameter("@Id", address.Id));
             commandUpdate.Parameters.Add(new SqlParameter("@Street", address.Street));

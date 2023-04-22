@@ -55,18 +55,28 @@ namespace AgenciaTurismoADO.Services
             List<Ticket> ticketList = new List<Ticket>();
 
             StringBuilder sb = new StringBuilder();
-            sb.Append("select ticket.Id, ");
-            sb.Append("       ticket.DtRegistration,");
-            sb.Append("       ticket.CostTicket");
-            sb.Append("       ticket.Origin, ");
-            sb.Append("       ticket.Destination, ");
-            sb.Append("       address.Street, ");
-            sb.Append("       address.Number, ");
-            sb.Append("       address.Neighborhood, ");
-            sb.Append("       address.PostalCode, ");
-            sb.Append("       address.Complement, ");
-            sb.Append("       city.NameCity, ");
-            sb.Append("       FROM [TICKET] client JOIN [ADDRESS] address ON ticket.[IdOrigin] = address.[Id] AND ticket.[IdDestination] = address.[Id]");
+            sb.Append("select ticket.Id AS IdTicket, ");
+            sb.Append("       ticket.DtRegistration AS TicketResgistration,");
+            sb.Append("       ticket.CostTicket AS CostTicket, ");
+            sb.Append("       addressOrigin.Id AS IdOrigin, ");
+            sb.Append("       addressOrigin.Street AS OriginStreet, ");
+            sb.Append("       addressOrigin.Number AS OriginNumber, ");
+            sb.Append("       addressOrigin.Neighborhood AS OriginNeighborhood, ");
+            sb.Append("       addressOrigin.PostalCode AS OriginPostalCode, ");
+            sb.Append("       addressOrigin.Complement AS OriginComplemnt, ");
+            sb.Append("       cityOrigin.Id AS IdCity, ");
+            sb.Append("       cityOrigin.NameCity AS NameCityOrigin, ");
+            sb.Append("       cityOrigin.DtRegistration AS CityOriginResgistration,");
+            sb.Append("       addressDestination.Street AS DestinationStreet, ");
+            sb.Append("       addressDestination.Number AS DestinationNumber, ");
+            sb.Append("       addressDestination.Neighborhood AS DestinationNeighborhood, ");
+            sb.Append("       addressDestination.PostalCode As DestinationPostalCode, ");
+            sb.Append("       addressDestination.Complement AS DestinationComplement, ");
+
+            sb.Append("       cityDestination.NameCity AS NameCityDestination, ");
+            sb.Append("       FROM [TICKET] client JOIN [ADDRESS] addressOrigin ON ticket.[IdOrigin] = address.[Id] "); 
+            sb.Append("       JOIN [CITY] cityOrigin ON city.[Id] = address.[IdCity]");
+            sb.Append("       JOIN [ADDRESS] addressDestination ON ticket.[IdDestination] = address.IdCity");
             sb.Append("       JOIN [CITY] ON city.Id = address.IdCity");
             SqlCommand commandSelect = new SqlCommand(sb.ToString(), conn);
             SqlDataReader dr = commandSelect.ExecuteReader();
@@ -75,31 +85,30 @@ namespace AgenciaTurismoADO.Services
             {
                 Ticket ticket = new Ticket();
 
-                ticket.Id = (int)dr["Id"];
-                ticket.DtRegistration = (DateTime)dr["DtRegsitration"];
-                ticket.CostTicket = (decimal)dr["CostTiket"];
+                ticket.Id = (int)dr["IdTicket"];
+                ticket.DtRegistration = (DateTime)dr["TicketResgistration"];
+                ticket.CostTicket = (decimal)dr["CostTicket"];
                 ticket.Origin = new Address()
                 {
-                    Street = (string)dr["Street"],
-                    Number = (int)dr["Number"],
-                    Neighborhood = (string)dr["Neighborhood"],
-                    PostalCode = (string)dr["PostalCode"],
-                    Complement = (string)dr["Complement"]
+                    Street = (string)dr["OriginStreet,"],
+                    Number = (int)dr["OriginNumber"],
+                    Neighborhood = (string)dr["OriginNeighborhood"],
+                    PostalCode = (string)dr["OriginPostalCode"],
+                    Complement = (string)dr["OriginComplemnt"]
                 };
                 ticket.Destination = new Address()
                 {
-                    Street = (string)dr["Street"],
-                    Number = (int)dr["Number"],
-                    Neighborhood = (string)dr["Neighborhood"],
-                    PostalCode = (string)dr["PostalCode"],
-                    Complement = (string)dr["Complement"]
+                    Street = (string)dr["DestinationStreet"],
+                    Number = (int)dr["DestinationNumber"],
+                    Neighborhood = (string)dr["DestinationNeighborhood"],
+                    PostalCode = (string)dr["DestinationPostalCode"],
+                    Complement = (string)dr["DestinationComplement"]
                 };
 
                 ticketList.Add(ticket);
             }
             return ticketList;
         }
-
 
         public int Update(Ticket ticket)
         {

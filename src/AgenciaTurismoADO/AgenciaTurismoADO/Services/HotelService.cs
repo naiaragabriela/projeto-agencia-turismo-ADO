@@ -32,7 +32,7 @@ namespace AgenciaTurismoADO.Services
 
                 SqlCommand commandInsert = new SqlCommand(strInsert, conn);
 
-                commandInsert.Parameters.Add(new SqlParameter("@NameHotel", hotel.NameHotel));
+                commandInsert.Parameters.Add(new SqlParameter("@NameHotel", hotel.Name));
                 commandInsert.Parameters.Add(new SqlParameter("@IdAddress", hotel.Address.Id));
                 commandInsert.Parameters.Add(new SqlParameter("@CostHotel", hotel.CostHotel));
                 commandInsert.Parameters.Add(new SqlParameter("@DtRegistration", hotel.DtRegistration));
@@ -59,18 +59,20 @@ namespace AgenciaTurismoADO.Services
 
             StringBuilder sb = new StringBuilder();
 
-            sb.Append("select hotel.Id, ");
-            sb.Append("       hotel.NameHotel, ");
-            sb.Append("       hotel.CostHotel, ");
-            sb.Append("       hotel.Address, ");
-            sb.Append("       address.Street, ");
-            sb.Append("       address.Number, ");
-            sb.Append("       address.Neighborhood, ");
-            sb.Append("       address.PostalCode, ");
-            sb.Append("       address.Complement, ");
-            sb.Append("       city.NameCity, ");
-            sb.Append("       FROM [HOTEL] hotel JOIN [ADDRESS] address ON hotel.[IdAddress] = address.[Id] ");
-            sb.Append("       JOIN [CITY] ON city.Id = address.IdCity");
+            sb.Append("select hotel.Id AS IdHotel, ");
+            sb.Append("       hotel.Name AS NameHotel , ");
+            sb.Append("       hotel.DtRegistration AS HotelResitration , ");
+            sb.Append("       hotel.CostHotel As CostHotel, ");
+            sb.Append("       addressHotel.Street AS StreetHotel, ");
+            sb.Append("       addressHotel.Number AS NumberHotel, ");
+            sb.Append("       addressHotel.Neighborhood AS NeighborhoodHotel, ");
+            sb.Append("       addressHotel.PostalCode As PostalCodeHotel, ");
+            sb.Append("       addressHotel.Complement AS ComplementHotel, ");
+            sb.Append("       cityHotel.Id AS IdCityHotel, ");
+            sb.Append("       cityHotel.NameCity AS NameCityHotel, ");
+            sb.Append("       cityHotel.DtRegistration AS CityRegistration, ");
+            sb.Append("       FROM [HOTEL] hotel JOIN [ADDRESS] addressHotel ON hotel.[IdAddress] = address.[Id] ");
+            sb.Append("       JOIN [CITY] cityHotel ON city.Id = address.IdCity");
 
             SqlCommand commandSelect = new SqlCommand(sb.ToString(), conn);
             SqlDataReader dr = commandSelect.ExecuteReader();
@@ -79,19 +81,25 @@ namespace AgenciaTurismoADO.Services
             {
                 Hotel hotel = new Hotel();
 
-                hotel.Id = (int)dr["Id"];
-                hotel.NameHotel = (string)dr["NameHotel"];
-                hotel.DtRegistration = (DateTime)dr["DtRegsitration"];
+                hotel.Id = (int)dr["IdHotel"];
+                hotel.Name = (string)dr["NameHotel"];
+                hotel.DtRegistration = (DateTime)dr["HotelResitration"];
                 hotel.CostHotel = (decimal)dr["CostHotel"];
                 hotel.Address = new Address()
                 {
-                    Street = (string)dr["Street"],
-                    Number = (int)dr["Number"],
-                    Neighborhood = (string)dr["Neighborhood"],
-                    PostalCode = (string)dr["PostalCode"],
-                    Complement = (string)dr["Complement"]
+                    Street = (string)dr["StreetHotel"],
+                    Number = (int)dr["NumberHotel"],
+                    Neighborhood = (string)dr["NeighborhoodHotel"],
+                    PostalCode = (string)dr["PostalCodeHotel"],
+                    Complement = (string)dr["ComplementHotel"],
+                    City = new City()
+                     {
+                         Id = (int)dr["IdCityHotel"],
+                         NameCity = (string)dr["NameCityHotel"],
+                         DtRegistration = (DateTime)dr["CityRegistration"]
+                      }
                 };
-
+               
                 hotelList.Add(hotel);
             }
             return hotelList;
@@ -106,7 +114,7 @@ namespace AgenciaTurismoADO.Services
                              "CostHotel = @CostHotel" +
                              " where Id = @id";
             SqlCommand commandUpdate = new SqlCommand(_update, conn);
-            commandUpdate.Parameters.Add(new SqlParameter("@NameHotel", hotel.NameHotel));
+            commandUpdate.Parameters.Add(new SqlParameter("@NameHotel", hotel.Name));
             commandUpdate.Parameters.Add(new SqlParameter("@IdAddress", hotel.Address.Id));
             commandUpdate.Parameters.Add(new SqlParameter("@CostHotel", hotel.CostHotel));
 

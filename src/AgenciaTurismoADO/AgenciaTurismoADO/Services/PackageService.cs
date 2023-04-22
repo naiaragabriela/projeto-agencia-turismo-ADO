@@ -13,15 +13,24 @@ namespace AgenciaTurismoADO.Services
 {
     public class PackageService
     {
-        readonly string strConn = @"Server=(localdb)\MSSQLLocalDB;Integrated Security=true;AttachDbFileName=C:\Users\adm\source\repos\projeto-agencia-turismo-ADO\src\banco\TourismAgencyADO.mdf";
-        readonly SqlConnection conn;
+        SqlConnection conn;
+        ConnectionDB connectionDB;
+
+        public PackageService()
+        {
+            connectionDB = new ConnectionDB();
+            conn = connectionDB.OpenConnectionDB();
+        }
 
 
         public int InsertPackage(Package package)
         {
+
             int status = 0;
             try
             {
+                conn.Open();
+
                 string strInsert = "insert into Package (IdHotel, IdTicket, DtRegistration, Cost, IdClient)" +
                     "values (@IdHotel, @IdTicket, @DtRegistration, @Cost, @IdClient)";
 
@@ -55,31 +64,51 @@ namespace AgenciaTurismoADO.Services
 
             StringBuilder sb = new StringBuilder();
 
-            sb.Append("select package.Id, ");
-            sb.Append("       package.Cost, ");
-            sb.Append("       package.DtRegistration, ");
-            sb.Append("       client.Id, ");
-            sb.Append("       client.Name, ");
-            sb.Append("       client.Phone, ");
-            sb.Append("       client.Address, ");
-            sb.Append("       hotel.Id, ");
-            sb.Append("       hotel.NameHotel, ");
-            sb.Append("       hotel.CostHotel, ");
-            sb.Append("       hotel.Address, ");
-            sb.Append("       ticket.Id, ");
-            sb.Append("       ticket.CostTicket");
-            sb.Append("       ticket.Origin");
-            sb.Append("       ticket.Destination");
-            sb.Append("       address.Street, ");
-            sb.Append("       address.Number, ");
-            sb.Append("       address.Neighborhood, ");
-            sb.Append("       address.PostalCode, ");
-            sb.Append("       address.Complement, ");
-            sb.Append("       city.NameCity, ");
+            sb.Append("select package.Id AS IdPackage ");
+            sb.Append("       package.Cost AS PackageCost, ");
+            sb.Append("       package.DtRegistration AS PackageRegistration, ");
+            sb.Append("       client.Id AS IdClient, ");
+            sb.Append("       client.Name AS NameClient, ");
+            sb.Append("       client.Phone AS PhoneClient, ");
+            sb.Append("       client.Address AS AddressClient, ");
+            sb.Append("       address.Street AS ClientStreet ");
+            sb.Append("       address.Number AS ClientNumber, ");
+            sb.Append("       address.Neighborhood As ClientNeighborhood, ");
+            sb.Append("       address.PostalCode AS ClientPostalCode, ");
+            sb.Append("       address.Complement AS ClientComplement, ");
+            sb.Append("       city.NameCity AS ClientNameCity, ");
+            sb.Append("       hotel.Id AS IdHotel, ");
+            sb.Append("       hotel.Name AS NameHotel, ");
+            sb.Append("       hotel.CostHotel AS CostHotel, ");
+            sb.Append("       hotel.Address AS AddressHotel, ");
+            sb.Append("       address.Street AS HotelStreet, ");
+            sb.Append("       address.Number AS HotelNumber, ");
+            sb.Append("       address.Neighborhood AS HotelNeighborhood, ");
+            sb.Append("       address.PostalCode AS HotelPostalCode, ");
+            sb.Append("       address.Complement AS HotelComplement, ");
+            sb.Append("       city.NameCity AS HotelNameCity, ");
+            sb.Append("       ticket.Id AS IdTicket, ");
+            sb.Append("       ticket.CostTicket AS CostTicket");
+            sb.Append("       ticket.Origin AS OriginTicket");
+            sb.Append("       address.Street AS OriginStreet, ");
+            sb.Append("       address.Number AS OriginNumber, ");
+            sb.Append("       address.Neighborhood AS OriginNeighborhood, ");
+            sb.Append("       address.PostalCode AS OriginPostalCode, ");
+            sb.Append("       address.Complement AS OriginComplement, ");
+            sb.Append("       city.NameCity AS OriginNameCity, ");
+            sb.Append("       ticket.Destination AS DestinationTicket");
+            sb.Append("       address.Street As DestinationStreet, ");
+            sb.Append("       address.Number AS DestinationNumber, ");
+            sb.Append("       address.Neighborhood As DestinationNeighborhood, ");
+            sb.Append("       address.PostalCode AS DestinationPostalCode, ");
+            sb.Append("       address.Complement AS Complement, ");
+            sb.Append("       city.NameCity AS NameCity, ");
             sb.Append("       FROM [PACKAGE] package JOIN [CLIENT] client ON package.[IdClient] = client.[Id] ");
+            sb.Append("       JOIN [ADDRESS] addressClient ON ");
             sb.Append("       FROM [PACKAGE] package JOIN [HOTEL] hotel ON package.[IdHotel] = hotel.[Id] ");
+            sb.Append("       JOIN [ADDRESS] addressClient ON ");
             sb.Append("       FROM [PACKAGE] package JOIN [TICKET] ticket ON package.[IdTicket] = ticket.[Id] ");
-  
+            sb.Append("       JOIN [ADDRESS] addressClient ON ");
 
             SqlCommand commandSelect = new SqlCommand(sb.ToString(), conn);
             SqlDataReader dr = commandSelect.ExecuteReader();

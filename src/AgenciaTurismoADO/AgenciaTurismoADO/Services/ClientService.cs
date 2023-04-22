@@ -53,15 +53,15 @@ namespace AgenciaTurismoADO.Services
             List<Client> clientList = new List<Client>();
 
             StringBuilder sb = new StringBuilder();
-            sb.Append("select client.Id, ");
-            sb.Append("       client.Name, ");
-            sb.Append("       client.Phone, ");
-            sb.Append("       address.Street, ");
-            sb.Append("       address.Number, ");
-            sb.Append("       address.Neighborhood, ");
-            sb.Append("       address.PostalCode, ");
-            sb.Append("       address.Complement, ");
-            sb.Append("       city.NameCity, ");
+            sb.Append("select client.Id AS IdClient, ");
+            sb.Append("       client.Name AS NameClient, ");
+            sb.Append("       client.Phone AS PhoneClient, ");
+            sb.Append("       addressClient.Street As StreetClient, ");
+            sb.Append("       address.Number AS NumberClient, ");
+            sb.Append("       address.Neighborhood AS NeighborhoodClient,");
+            sb.Append("       address.PostalCode AS PostalCodeClient, ");
+            sb.Append("       address.Complement AS ComplementClient, ");
+            sb.Append("       city.NameCity As NameCityClient, ");
             sb.Append("       FROM [ClIENT] client JOIN [ADDRESS] address ON client.[IdAddress] = address.[Id] ");
             sb.Append("       JOIN [CITY] ON city.Id = address.IdCity");
           
@@ -74,19 +74,19 @@ namespace AgenciaTurismoADO.Services
             {
                 Client client = new Client();
 
-                client.Id = (int)dr["Id"];
-                client.Name = (string)dr["Name"];
-                client.Phone = (string)dr["Phone"];
+                client.Id = (int)dr["IdClient"];
+                client.Name = (string)dr["NameClient"];
+                client.Phone = (string)dr["PhoneClient"];
                 client.Address = new Address()
                 {
-                    Street = (string)dr["Street"],
-                    Number = (int)dr["Number"],
-                    Neighborhood = (string)dr["Neighborhood"],
-                    PostalCode = (string)dr["PostalCode"],
-                    Complement = (string)dr["Complement"],
+                    Street = (string)dr["StreetClient"],
+                    Number = (int)dr["NumberClient"],
+                    Neighborhood = (string)dr["NeighborhoodClient"],
+                    PostalCode = (string)dr["PostalCodeClient"],
+                    Complement = (string)dr["ComplementClient"],
                     City = new City()
                     {
-                        NameCity = (string)dr["NameCity"]
+                        NameCity = (string)dr["NameCityClient"]
                     }
                 };
                 clientList.Add(client);
