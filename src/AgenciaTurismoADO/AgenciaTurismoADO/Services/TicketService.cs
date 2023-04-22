@@ -64,20 +64,24 @@ namespace AgenciaTurismoADO.Services
             sb.Append("       addressOrigin.Neighborhood AS OriginNeighborhood, ");
             sb.Append("       addressOrigin.PostalCode AS OriginPostalCode, ");
             sb.Append("       addressOrigin.Complement AS OriginComplemnt, ");
-            sb.Append("       cityOrigin.Id AS IdCity, ");
+            sb.Append("       addressOrigin.DtRegistration AS AddressOriginResgistration,");
+            sb.Append("       cityOrigin.Id AS IdCityOrigin, ");
             sb.Append("       cityOrigin.NameCity AS NameCityOrigin, ");
             sb.Append("       cityOrigin.DtRegistration AS CityOriginResgistration,");
+            sb.Append("       addressDestination.Id AS IdDestination, ");
             sb.Append("       addressDestination.Street AS DestinationStreet, ");
             sb.Append("       addressDestination.Number AS DestinationNumber, ");
             sb.Append("       addressDestination.Neighborhood AS DestinationNeighborhood, ");
             sb.Append("       addressDestination.PostalCode As DestinationPostalCode, ");
             sb.Append("       addressDestination.Complement AS DestinationComplement, ");
-
+            sb.Append("       addressDestination.DtRegistration AS AddressDestinationResgistration,");
+            sb.Append("       cityDestination.Id AS IdCityDestination, ");
             sb.Append("       cityDestination.NameCity AS NameCityDestination, ");
+            sb.Append("       cityDestination.Registration AS CityOriginRegistration, ");
             sb.Append("       FROM [TICKET] client JOIN [ADDRESS] addressOrigin ON ticket.[IdOrigin] = address.[Id] "); 
             sb.Append("       JOIN [CITY] cityOrigin ON city.[Id] = address.[IdCity]");
             sb.Append("       JOIN [ADDRESS] addressDestination ON ticket.[IdDestination] = address.IdCity");
-            sb.Append("       JOIN [CITY] ON city.Id = address.IdCity");
+            sb.Append("       JOIN [CITY] cityDestination ON city.Id = address.IdCity");
             SqlCommand commandSelect = new SqlCommand(sb.ToString(), conn);
             SqlDataReader dr = commandSelect.ExecuteReader();
 
@@ -90,19 +94,35 @@ namespace AgenciaTurismoADO.Services
                 ticket.CostTicket = (decimal)dr["CostTicket"];
                 ticket.Origin = new Address()
                 {
+                    Id = (int)dr["IdOrigin"], 
                     Street = (string)dr["OriginStreet,"],
                     Number = (int)dr["OriginNumber"],
                     Neighborhood = (string)dr["OriginNeighborhood"],
                     PostalCode = (string)dr["OriginPostalCode"],
-                    Complement = (string)dr["OriginComplemnt"]
+                    Complement = (string)dr["OriginComplemnt"],
+                    DtRegistration = (DateTime)dr["AddressOriginResgistration"],
+                    City = new City()
+                    {
+                        Id = (int)dr["IdCityOrigin"],
+                        NameCity = (string)dr["NameCityOrigin"],
+                        DtRegistration = (DateTime)dr["CityOriginResgistration"],
+                    }
                 };
                 ticket.Destination = new Address()
                 {
+                    Id = (int)dr["IdDestination"],
                     Street = (string)dr["DestinationStreet"],
                     Number = (int)dr["DestinationNumber"],
                     Neighborhood = (string)dr["DestinationNeighborhood"],
                     PostalCode = (string)dr["DestinationPostalCode"],
-                    Complement = (string)dr["DestinationComplement"]
+                    Complement = (string)dr["DestinationComplement"],
+                    DtRegistration = (DateTime)dr["AddressDestinationResgistration"],
+                    City = new City()
+                    {
+                        Id = (int)dr["IdCityDestination"],
+                        NameCity = (string)dr["NameCityDestination"],
+                        DtRegistration = (DateTime)dr["CityOriginRegistration"],
+                    }
                 };
 
                 ticketList.Add(ticket);

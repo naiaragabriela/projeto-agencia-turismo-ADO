@@ -56,14 +56,19 @@ namespace AgenciaTurismoADO.Services
             sb.Append("select client.Id AS IdClient, ");
             sb.Append("       client.Name AS NameClient, ");
             sb.Append("       client.Phone AS PhoneClient, ");
+            sb.Append("       client.DtRegistration AS ClientRegistration , ");
+            sb.Append("       addressClient.Id AS IdAddress, ");
             sb.Append("       addressClient.Street As StreetClient, ");
-            sb.Append("       address.Number AS NumberClient, ");
-            sb.Append("       address.Neighborhood AS NeighborhoodClient,");
-            sb.Append("       address.PostalCode AS PostalCodeClient, ");
-            sb.Append("       address.Complement AS ComplementClient, ");
+            sb.Append("       addressClient.Number AS NumberClient, ");
+            sb.Append("       addressClient.Neighborhood AS NeighborhoodClient,");
+            sb.Append("       addressClient.PostalCode AS PostalCodeClient, ");
+            sb.Append("       addressClient.Complement AS ComplementClient, ");
+            sb.Append("       addressClient.DtRegistration AS AddressRegistration , ");
+            sb.Append("       city.Id AS IdCity, ");
             sb.Append("       city.NameCity As NameCityClient, ");
-            sb.Append("       FROM [ClIENT] client JOIN [ADDRESS] address ON client.[IdAddress] = address.[Id] ");
-            sb.Append("       JOIN [CITY] ON city.Id = address.IdCity");
+            sb.Append("       city.DtRegistration As RegistrationCityClient, ");
+            sb.Append("       FROM [ClIENT] client JOIN [ADDRESS] addressClient ON client.[IdAddress] = addressClient.[Id] ");
+            sb.Append("       JOIN [CITY] city ON city.[Id] = addressClient.[IdCity]");
           
 
 
@@ -77,8 +82,10 @@ namespace AgenciaTurismoADO.Services
                 client.Id = (int)dr["IdClient"];
                 client.Name = (string)dr["NameClient"];
                 client.Phone = (string)dr["PhoneClient"];
+                client.DtRegistration = (DateTime)dr["HotelResitration"];
                 client.Address = new Address()
                 {
+                    Id = (int)dr["IdAddress"],
                     Street = (string)dr["StreetClient"],
                     Number = (int)dr["NumberClient"],
                     Neighborhood = (string)dr["NeighborhoodClient"],
@@ -86,7 +93,9 @@ namespace AgenciaTurismoADO.Services
                     Complement = (string)dr["ComplementClient"],
                     City = new City()
                     {
-                        NameCity = (string)dr["NameCityClient"]
+                        Id = (int)dr["IdCity"],
+                        NameCity = (string)dr["NameCityClient"],
+                        DtRegistration = (DateTime)dr["RegistrationCityClient"]
                     }
                 };
                 clientList.Add(client);
