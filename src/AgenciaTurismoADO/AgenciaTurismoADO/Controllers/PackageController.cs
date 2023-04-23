@@ -10,32 +10,26 @@ namespace AgenciaTurismoADO.Controllers
 {
     public class PackageController
     {
-        public int Insert(Package package)
+        public int Add(Package package)
         {
-            new HotelController().Insert(package.Hotel);
-            new TicketController().Insert(package.Ticket);
-            new ClientController().Insert(package.Client);
+          
 
-            return new PackageService().InsertPackage(package);
+            return new PackageService().Add(package);
         }
 
-        public List<Package> FindAll()
+        public List<Package> GetAll()
         {
-            return new PackageService().FindAll();
+            return new PackageService().GetAll();
         }
 
         public int Update(Package package)
         {
-            new HotelController().Update(package.Hotel);
-            new TicketController().Update(package.Ticket);
-            new ClientController().Update(package.Client);
-
             return new PackageService().Update(package);
         }
 
-        public int Delete(int id)
+        public int Delete(Package package)
         {
-            return new PackageService().Delete(id);
+            return new PackageService().Delete(package);
         }
 
 

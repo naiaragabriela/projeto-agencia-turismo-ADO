@@ -10,30 +10,25 @@ namespace AgenciaTurismoADO.Controllers
 {
     public class TicketController
     {
-        public int Insert(Ticket ticket)
+        public int Add(Ticket ticket)
         {
-            new AddressController().Insert(ticket.Origin);
-            new AddressController().Insert(ticket.Destination);
 
-            return new TicketService().InsertTicket(ticket);
+            return new TicketService().Add(ticket);
         }
 
-        public List<Ticket> FindAll()
+        public List<Ticket> GetAll()
         {
-            return new TicketService().FindAll();
+            return new TicketService().GetAll();
         }
 
         public int Update(Ticket ticket)
         {
-            new AddressController().Update(ticket.Origin);
-            new AddressController().Update(ticket.Destination);
-
             return new TicketService().Update(ticket);
         }
 
-        public int Delete(int id)
+        public int Delete(Ticket ticket)
         {
-            return new TicketService().Delete(id);
+            return new TicketService().Delete(ticket);
         }
     }
 }

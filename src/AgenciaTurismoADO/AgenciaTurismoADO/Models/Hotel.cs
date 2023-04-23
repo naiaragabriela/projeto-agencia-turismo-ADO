@@ -31,7 +31,7 @@ namespace AgenciaTurismoADO.Models
         */
 
 
-        public readonly static string SELECT ="SELECT HOTEL Id, DtRegistration, CostHotel, IdAddress, Street, Number, Neigborhood, PostalCode, Complement"
+        public readonly static string SELECT ="SELECT HOTEL Id, DtRegistration, CostHotel, IdAddress, Street, Number, Neigborhood, PostalCode, Complement"+
             "FROM HOTEL JOIN ADDRESS ON hotel.IdAddress = address.Id"+
             "JOIN CITY ON city.Id= anddress.Id";
 

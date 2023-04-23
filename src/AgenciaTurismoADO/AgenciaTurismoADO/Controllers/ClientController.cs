@@ -11,28 +11,27 @@ namespace AgenciaTurismoADO.Controllers
     public class ClientController
     {
 
-        public int Insert(Client client)
+        public int Add(Client client)
         {
-            new AddressController().Insert(client.Address);
+            
 
-            return new ClientService().InsertClient(client);
+            return new ClientService().Add(client);
         }
 
-        public List<Client> FindAll()
+        public List<Client> GetAll()
         {
-            return new ClientService().FindAll();
+            return new ClientService().GetAll();
         }
 
 
         public int Update(Client client)
         {
-            new AddressController().Update(client.Address);
 
             return new ClientService().Update(client);
         }
-        public int Delete(int id)
+        public int Delete(Client client)
         {
-            return new ClientService().Delete(id);
+            return new ClientService().Delete(client);
         }
     }
 }

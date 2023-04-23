@@ -11,28 +11,26 @@ namespace AgenciaTurismoADO.Controllers
     public class HotelController
     {
 
-        public int Insert(Hotel hotel)
+        public int Add(Hotel hotel)
         {
-            new AddressController().Insert(hotel.Address);
 
-            return new HotelService().InsertHotel(hotel);
+            return new HotelService().Add(hotel);
         }
 
-        public List<Hotel> FindAll()
+        public List<Hotel> GetAll()
         {
-            return new HotelService().FindAll();
+            return new HotelService().GetAll();
         }
 
         public int Update(Hotel hotel)
 
         {
-            new AddressController().Update(hotel.Address);
             return new HotelService().Update(hotel);
         }
 
-        public int Delete(int id)
+        public int Delete(Hotel hotel)
         {
-            return new HotelService().Delete(id);
+            return new HotelService().Delete(hotel);
         }
     }
 }

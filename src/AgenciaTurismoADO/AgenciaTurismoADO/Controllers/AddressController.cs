@@ -11,26 +11,23 @@ namespace AgenciaTurismoADO.Controllers
     public class AddressController
     {
 
-        public int Insert(Address address)
+        public int Add(Address address)
         {
-            new CityController().Add(address.City);
-
-            return new AddressService().InsertAddress(address);
+            return new AddressService().Add(address);
         }
 
-        public List<Address> FindAll()
+        public List<Address> GetAll()
         {
-            return new AddressService().FindAll();
+            return new AddressService().GetAll();
         }
         public int Update(Address address)
         {
-            new CityController().Update(address.City);
 
             return new AddressService().Update(address);
         }
-        public int Delete(int id)
+        public int Delete(Address address)
         {
-            return new AddressService().Delete(id);
+            return new AddressService().Delete(address);
         }
     }
 }

@@ -9,7 +9,7 @@ using Dapper;
 
 namespace AgenciaTurismoADO.Repository
 {
-    public class TicketRepository
+    public class TicketRepository: ITicketRepository
     {
         readonly string strConn = @"Server=(localdb)\MSSQLLocalDB;Integrated Security=true;AttachDbFileName=C:\Users\adm\source\repos\projeto-agencia-turismo-ADO\src\banco\TourismAgencyADO.mdf";
 
@@ -34,14 +34,14 @@ namespace AgenciaTurismoADO.Repository
                 return (List<Ticket>)ticket;
             }
         }
-        public int Update(City city)
+        public int Update(Ticket ticket)
         {
             int result = 0;
 
             using (var db = new SqlConnection(strConn))
             {
                 db.Open();
-                result = (int)db.Execute(City.UPDATE, city);
+                result = (int)db.Execute(Ticket.UPDATE, ticket);
             }
             return result;
 
@@ -59,6 +59,5 @@ namespace AgenciaTurismoADO.Repository
             return result;
 
         }
-
     }
 }
