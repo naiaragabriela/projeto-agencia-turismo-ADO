@@ -8,6 +8,11 @@ namespace AgenciaTurismoADO.Models
 {
     public class Ticket
     {
+        #region Constant
+
+
+        #endregion
+
         #region Properties
         public int Id { get; set; }
         public Address Origin { get; set; }
@@ -16,11 +21,13 @@ namespace AgenciaTurismoADO.Models
         public decimal CostTicket { get; set; }
         #endregion
 
+        #region Methods
         public override string ToString()
         {
             return "Custo da Passagem: " + CostTicket +
                    "\nOrigem da Passagem: " + Origin.ToString() +
                    "\nDestino da Passagem: " + Destination.ToString();
         }
+        #endregion
     }
 }

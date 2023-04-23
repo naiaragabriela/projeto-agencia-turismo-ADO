@@ -8,6 +8,12 @@ namespace AgenciaTurismoADO.Models
 {
     public class Address
     {
+
+        #region Constant
+
+
+        #endregion
+
         #region Properties 
         public int Id { get; set; }
         public string Street { get; set; }
@@ -18,6 +24,8 @@ namespace AgenciaTurismoADO.Models
         public City City { get; set; }
         public DateTime DtRegistration { get; set; }
         #endregion
+
+        #region Methods
         public override string ToString()
         {
             return "Logradouro: " + Street +
@@ -27,5 +35,6 @@ namespace AgenciaTurismoADO.Models
                     "\nComplemento: " + Complement +
                     "\n" + City.ToString();
         }
+        #endregion
     }
 }

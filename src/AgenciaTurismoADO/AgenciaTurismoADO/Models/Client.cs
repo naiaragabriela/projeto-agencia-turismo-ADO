@@ -8,6 +8,12 @@ namespace AgenciaTurismoADO.Models
 {
     public class Client
     {
+
+        #region Constant
+
+
+        #endregion
+
         #region Properties
 
         public int Id { get; set; }
@@ -18,12 +24,14 @@ namespace AgenciaTurismoADO.Models
 
         #endregion
 
+        #region Methods
         public override string ToString()
         {
             return "Nome: " + Name +
                    "\nPhone: " + Phone +
                    "\nEndereço: " + Address.ToString();
         }
+        #endregion
     }
 }
 

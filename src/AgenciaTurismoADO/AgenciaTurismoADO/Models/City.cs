@@ -8,6 +8,13 @@ namespace AgenciaTurismoADO.Models
 {
     public class City
     {
+        #region Constant
+
+
+        #endregion
+
+
+
         #region Properties
 
         public int Id { get; set; }
@@ -15,11 +22,11 @@ namespace AgenciaTurismoADO.Models
         public DateTime DtRegistration { get; set; }
         #endregion
 
-
+        #region Methods
         public override string ToString()
         {
             return "Nome da cidade: " + NameCity;
         }
-
+        #endregion
     }
 }

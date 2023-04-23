@@ -8,6 +8,11 @@ namespace AgenciaTurismoADO.Models
 {
     public class Package
     {
+        #region Constant
+
+
+        #endregion
+
         #region Properties
         public int Id { get; set; }
         public Hotel Hotel { get; set; }
@@ -17,7 +22,7 @@ namespace AgenciaTurismoADO.Models
         public Client Client { get; set; }
         #endregion
 
-
+        #region Methods
         public override string ToString()
         {
             return "Custo do Pacote: " + Cost +
@@ -26,6 +31,7 @@ namespace AgenciaTurismoADO.Models
                    "\n Cliente: " + Client.ToString();
 
         }
-    
+        #endregion
+
     }
 }
