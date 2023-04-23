@@ -12,29 +12,14 @@ namespace AgenciaTurismoADO.Models
         public readonly static string INSERT = "INSERT INTO HOTEL(Name, IdAddress, CostHotel, DtRegistration) " +
                        "VALUES (@Name, @IdAddress, @CostHotel, @DtRegistration); select cast(scope_identity() as int)";
 
-        /*
-            sb.Append("select hotel.Id AS IdHotel, ");
-            sb.Append("       hotel.Name AS NameHotel , ");
-            sb.Append("       hotel.DtRegistration AS HotelRegistration , ");
-            sb.Append("       hotel.CostHotel As CostHotel, ");
-            sb.Append("       addressHotel.Id AS IdAddress, ");
-            sb.Append("       addressHotel.Street AS StreetHotel, ");
-            sb.Append("       addressHotel.Number AS NumberHotel, ");
-            sb.Append("       addressHotel.Neighborhood AS NeighborhoodHotel, ");
-            sb.Append("       addressHotel.PostalCode As PostalCodeHotel, ");
-            sb.Append("       addressHotel.Complement AS ComplementHotel, ");
-            sb.Append("       cityHotel.Id AS IdCity, ");
-            sb.Append("       cityHotel.NameCity AS NameCityHotel, ");
-            sb.Append("       cityHotel.DtRegistration AS CityRegistration, ");
-            sb.Append("       FROM [HOTEL] hotel JOIN [ADDRESS] addressHotel ON hotel.[IdAddress] = addressHotel.[Id] ");
-            sb.Append("       JOIN [CITY] cityHotel ON cityHotel.[Id] = addressHotel.[IdCity]");
-        */
+     
 
 
-        public readonly static string SELECT ="SELECT HOTEL Id, DtRegistration, CostHotel, IdAddress, Street, Number, Neigborhood, PostalCode, Complement"+
-            "FROM HOTEL JOIN ADDRESS ON hotel.IdAddress = address.Id"+
-            "JOIN CITY ON city.Id= anddress.Id";
-
+        public readonly static string SELECT = "SELECT [Hotel].[Id] AS Id, [Hotel].[Name], [Hotel].[CostHotel],[Hotel].[DtRegistration]," +
+            "[AddressHotel].[Id] AS SplitAddress, [AddressHotel].[Id] AS Id, [Street],[Number],[Neighborhood],[PostalCode],[Complement]," +
+            "[AddressHotel].[DtRegistration],[AddressCity].[Id] AS SplitCity, [AddressCity].[Id] AS Id, [AddressCity].[NameCity], [AddressCity].[DtRegistration] " +
+            "FROM [Hotel] JOIN [Address] AddressHotel ON IdAddress = AddressHotel.Id " +
+            "JOIN [City] AddressCity ON AddressHotel.IdCity= AddressCity.Id";
 
         public readonly static string UPDATE = "UPDATE Hotel SET " +
                                                "NameHotel = @NameHotel" +

@@ -20,7 +20,13 @@ namespace AgenciaTurismoADO.Repository
             using (var db = new SqlConnection(strConn))
             {
                 db.Open();
-                result = (int)db.ExecuteScalar(Hotel.INSERT, hotel);
+                result = (int)db.ExecuteScalar(Hotel.INSERT, new
+                {
+                    Name = hotel.Name,
+                    CostHotel = hotel.CostHotel,
+                    DtRegistration = hotel.DtRegistration,
+                    IdAddress= hotel.Address.Id
+                });
             }
             return result;
         }
@@ -30,7 +36,13 @@ namespace AgenciaTurismoADO.Repository
             using (var db = new SqlConnection(strConn))
             {
                 db.Open();
-                var hotel = db.Query<Hotel>(Hotel.SELECT);
+                var hotel = db.Query<Hotel, Address, City, Hotel>(Hotel.SELECT, (hotel, address, city) =>
+                {
+                    address.City = city;
+                    hotel.Address = address;
+                    return hotel;
+                }, splitOn: "SplitAddress, SplitCity");
+
                 return (List<Hotel>)hotel;
             }
         }

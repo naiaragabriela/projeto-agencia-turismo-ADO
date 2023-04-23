@@ -2,8 +2,11 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Net;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using AgenciaTurismoADO.Models;
 using Dapper;
 
@@ -20,7 +23,13 @@ namespace AgenciaTurismoADO.Repository
             using (var db = new SqlConnection(strConn))
             {
                 db.Open();
-                result = (int)db.ExecuteScalar(Client.INSERT, client);
+                result = (int)db.ExecuteScalar(Client.INSERT, new
+                {
+                    Name = client.Name,
+                    Phone = client.Phone,
+                    DtRegistration = client.DtRegistration,
+                    IdAddress = client.Address.Id,
+                });
             }
             return result;
         }
@@ -30,20 +39,27 @@ namespace AgenciaTurismoADO.Repository
             using (var db = new SqlConnection(strConn))
             {
                 db.Open();
-                var client = db.Query<Client>(Client.SELECT);
+                var client = db.Query<Client, Address, City, Client>(Client.SELECT, (client, address, city) =>
+                {
+                    address.City = city;
+                    client.Address = address;
+                    return client;
+                }, splitOn: "SplitAddress,SplitCity");
+
                 return (List<Client>)client;
-            }
+            };
+            
         }
 
         public int Update(Client client)
         {
             int result = 0;
 
-            using (var db = new SqlConnection(strConn))
-            {
-                db.Open();
-                result = (int)db.Execute(Client.UPDATE, client);
-            }
+        using (var db = new SqlConnection(strConn))
+        {
+            db.Open();
+            result = (int)db.Execute(Client.UPDATE, client);
+        }
             return result;
         }
 

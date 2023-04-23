@@ -96,6 +96,7 @@ internal class Program
 
         Address addressHotel = new Address()
         {
+            Id = 14,
             Street = "Rua Augusta",
             Number = 150,
             Neighborhood = "Viva",
@@ -107,6 +108,7 @@ internal class Program
 
         Address addressOrigin = new Address()
         {
+            Id = 15,
             Street = "Rua Feliz",
             Number = 100,
             Neighborhood = "Viva",
@@ -118,6 +120,7 @@ internal class Program
 
         Address addressDestination = new Address()
         {
+            Id = 16,
             Street = "Rua Origem",
             Number = 200,
             Neighborhood = "Vivendo",
@@ -149,9 +152,9 @@ internal class Program
         #endregion
 
         #region SELECT ADDRESS
-        
+        /*
         new AddressController().GetAll().ForEach(x => Console.WriteLine(x + "\n\n"));
-        
+        */
         #endregion
 
         #region UPDATE ADDRESS
@@ -199,13 +202,13 @@ internal class Program
         };
 
         /*
-         if (new ClientController().Insert(clientOne) > 0)
-             Console.WriteLine("Sucesso! Cidade Inserida!");
+         if (new ClientController().Add(clientOne) > 0)
+             Console.WriteLine("Sucesso! Cliente Inserido!");
          else
              Console.WriteLine("Erro ao inserir registro");
 
-         if (new ClientController().Insert(clientTwo) > 0)
-             Console.WriteLine("Sucesso! Cidade Inserida!");
+         if (new ClientController().Add(clientTwo) > 0)
+             Console.WriteLine("Sucesso! Cliente Inserido!");
          else
              Console.WriteLine("Erro ao inserir registro");
         */
@@ -213,7 +216,7 @@ internal class Program
 
         #region SELECT CLIENT
         /*
-        new ClientController().FindAll().ForEach(x => Console.WriteLine(x + "\n\n"));
+        new ClientController().GetAll().ForEach(x => Console.WriteLine(x + "\n\n"));
         */
         #endregion
 
@@ -305,17 +308,24 @@ internal class Program
             CostHotel = 300,
             DtRegistration = DateTime.Now,
         };
+/*
+        if (new HotelController().Add(hotel) > 0)
+            Console.WriteLine("Sucesso! Hotel Inserido!");
+        else
+            Console.WriteLine("Erro ao inserir registro");
+*/
+
 
         #endregion
 
         #region SELECT HOTEL
-        /*
-        new HotelController().FindAll().ForEach(x => Console.WriteLine(x + "\n\n"));
-
+        
+        new HotelController().GetAll().ForEach(x => Console.WriteLine(x + "\n\n"));
+       
         #endregion
 
         #region UPDATE HOTEL
-
+        /*
         if (new HotelController().Update(hotel) > 0)
 
             Console.WriteLine("Sucesso! Update completo!");
