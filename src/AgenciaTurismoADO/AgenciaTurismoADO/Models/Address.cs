@@ -28,11 +28,13 @@ namespace AgenciaTurismoADO.Models
         #region Methods
         public override string ToString()
         {
-            return "Logradouro: " + Street +
+            return  "Id de endereço: " + Id +
+                    "\nLogradouro: " + Street +
                     "\nNúmero: " + Number +
                     "\nBairro: " + Neighborhood +
                     "\nCEP: " + PostalCode +
                     "\nComplemento: " + Complement +
+                    "\n Data do registro do Endereço: " + DtRegistration +
                     "\n" + City.ToString();
         }
         #endregion

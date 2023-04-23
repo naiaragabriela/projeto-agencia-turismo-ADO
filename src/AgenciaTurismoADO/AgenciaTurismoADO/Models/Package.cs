@@ -25,7 +25,9 @@ namespace AgenciaTurismoADO.Models
         #region Methods
         public override string ToString()
         {
-            return "Custo do Pacote: " + Cost +
+            return "Id do Pacote: "+ Id+
+                   "\nCusto do Pacote: " + Cost +
+                   "\nData de Registro do Pacote: "+ DtRegistration +
                    "\nHotel: " + Hotel.ToString() +
                    "\n Passagem: " + Ticket.ToString() +
                    "\n Cliente: " + Client.ToString();

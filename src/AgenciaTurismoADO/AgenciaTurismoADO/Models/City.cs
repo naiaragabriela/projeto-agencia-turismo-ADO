@@ -10,6 +10,7 @@ namespace AgenciaTurismoADO.Models
     {
         #region Constant
 
+        public readonly static string INSERT = "INSERT INTO CITY (NameCity, DtRegistration) VALUES (@NameCity,DtRegistration)";
 
         #endregion
 
@@ -25,7 +26,9 @@ namespace AgenciaTurismoADO.Models
         #region Methods
         public override string ToString()
         {
-            return "Nome da cidade: " + NameCity;
+            return "Id da cidade: "+ Id +
+                "\nNome da cidade: " + NameCity +
+                "\nData do registro da Cidade: " + DtRegistration;
         }
         #endregion
     }
