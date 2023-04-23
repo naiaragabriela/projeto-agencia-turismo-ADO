@@ -34,7 +34,7 @@ internal class Program
             DtRegistration = DateTime.Now
         };
 
-        
+        /*
         
         if (new CityController().Add(cityOne) > 0)
             Console.WriteLine("Sucesso! Cidade Inserida!");
@@ -51,16 +51,15 @@ internal class Program
         else
             Console.WriteLine("Erro ao inserir registro");
         
+        */
 
         #endregion
         
 
-        
-
         #region SELECT CITY
-        /*
-        new CityController().FindAll().ForEach(x => Console.WriteLine(x + "\n\n"));
-        */
+        
+        new CityController().GetAll().ForEach(x => Console.WriteLine(x + "\n\n"));
+        
         #endregion
 
         #region UPDATE CITY

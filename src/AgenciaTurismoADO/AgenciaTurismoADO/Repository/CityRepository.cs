@@ -35,7 +35,6 @@ namespace AgenciaTurismoADO.Repository
             }
         }
 
-
         public int Update (City city)
         {
             int result = 0;
