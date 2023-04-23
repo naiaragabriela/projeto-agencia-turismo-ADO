@@ -20,3 +20,4 @@ C:\Users\adm\source\repos\projeto-agencia-turismo-ADO\src\AgenciaTurismoADO\Agen
 C:\Users\adm\source\repos\projeto-agencia-turismo-ADO\src\AgenciaTurismoADO\AgenciaTurismoADO\obj\Debug\net6.0\AgenciaTurismoADO.pdb
 C:\Users\adm\source\repos\projeto-agencia-turismo-ADO\src\AgenciaTurismoADO\AgenciaTurismoADO\obj\Debug\net6.0\AgenciaTurismoADO.genruntimeconfig.cache
 C:\Users\adm\source\repos\projeto-agencia-turismo-ADO\src\AgenciaTurismoADO\AgenciaTurismoADO\obj\Debug\net6.0\ref\AgenciaTurismoADO.dll
+C:\Users\adm\source\repos\projeto-agencia-turismo-ADO\src\AgenciaTurismoADO\AgenciaTurismoADO\bin\Debug\net6.0\Dapper.dll

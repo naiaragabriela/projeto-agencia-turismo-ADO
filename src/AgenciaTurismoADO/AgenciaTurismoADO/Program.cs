@@ -22,6 +22,7 @@ internal class Program
 
         City cityTwo = new City()
         {
+            Id = 2,
             NameCity = "Bauru",
             DtRegistration = DateTime.Now
         };
@@ -33,25 +34,28 @@ internal class Program
             DtRegistration = DateTime.Now
         };
 
-
-        /*
-        if (new CityController().Insert(cityOne) > 0)
+        
+        
+        if (new CityController().Add(cityOne) > 0)
             Console.WriteLine("Sucesso! Cidade Inserida!");
         else
             Console.WriteLine("Erro ao inserir registro");
 
-        if (new CityController().Insert(cityTwo) > 0)
+        if (new CityController().Add(cityTwo) > 0)
             Console.WriteLine("Sucesso! Cidade Inserida!");
         else
             Console.WriteLine("Erro ao inserir registro");
 
-        if (new CityController().Insert(cityHotel) > 0)
+        if (new CityController().Add(cityHotel) > 0)
             Console.WriteLine("Sucesso! Cidade Inserida!");
         else
             Console.WriteLine("Erro ao inserir registro");
-        */
+        
 
         #endregion
+        
+
+        
 
         #region SELECT CITY
         /*
@@ -84,7 +88,7 @@ internal class Program
 
         #endregion
 
-        #endregion;
+        #endregion
 
 
         #region  ADDRESS
@@ -174,7 +178,7 @@ internal class Program
         */
         #endregion
 
-        #endregion;
+        #endregion
 
 
         #region  CLIENT
@@ -196,45 +200,48 @@ internal class Program
             Address = addressDestination
         };
 
-        if (new ClientController().Insert(clientOne) > 0)
-            Console.WriteLine("Sucesso! Cidade Inserida!");
-        else
-            Console.WriteLine("Erro ao inserir registro");
+        /*
+         if (new ClientController().Insert(clientOne) > 0)
+             Console.WriteLine("Sucesso! Cidade Inserida!");
+         else
+             Console.WriteLine("Erro ao inserir registro");
 
-        if (new ClientController().Insert(clientTwo) > 0)
-            Console.WriteLine("Sucesso! Cidade Inserida!");
-        else
-            Console.WriteLine("Erro ao inserir registro");
-
+         if (new ClientController().Insert(clientTwo) > 0)
+             Console.WriteLine("Sucesso! Cidade Inserida!");
+         else
+             Console.WriteLine("Erro ao inserir registro");
+        */
         #endregion
 
         #region SELECT CLIENT
-
+        /*
         new ClientController().FindAll().ForEach(x => Console.WriteLine(x + "\n\n"));
-
+        */
         #endregion
 
         #region UPDATE CLIENT
 
+        /*
         if (new ClientController().Update(clientOne) > 0)
 
             Console.WriteLine("Sucesso! Update completo!");
         else
             Console.WriteLine("Erro ao inserir registro");
+        */
         #endregion
 
         #region DELETE CLIENT
-
+        /*
         if (new AddressController().Delete(7) > 0)
 
             Console.WriteLine("Sucesso! Delete completo!");
         else
             Console.WriteLine("Erro ao inserir registro");
-
+        */
         #endregion
 
 
-        #endregion;
+        #endregion
 
 
         #region  TICKET
@@ -248,46 +255,46 @@ internal class Program
             DtRegistration = DateTime.Now,
         };
 
-
+        /*
         if (new TicketController().Insert(ticketOne) > 0)
             Console.WriteLine("Sucesso! Cidade Inserida!");
         else
             Console.WriteLine("Erro ao inserir registro");
-
+        */
 
 
         #endregion
 
         #region SELECT TICKET
-
+        /*
         new TicketController().FindAll().ForEach(x => Console.WriteLine(x + "\n\n"));
-
+        */
         #endregion
 
         #region UPDATE TICKET
 
-
+        /*
         if (new TicketController().Update(ticketOne) > 0)
 
             Console.WriteLine("Sucesso! Update completo!");
         else
             Console.WriteLine("Erro ao inserir registro");
-
+        */
 
         #endregion
 
         #region DELETE TICKET
-
+        /*
         if (new TicketController().Delete(8) > 0)
 
             Console.WriteLine("Sucesso! Delete completo!");
         else
             Console.WriteLine("Erro ao inserir registro");
 
-
+        */
         #endregion
 
-        #endregion;
+        #endregion
 
 
         #region HOTEL
@@ -295,7 +302,7 @@ internal class Program
         #region CREATE HOTEL
         Hotel hotel = new Hotel()
         {
-            NameHotel = "Hotel Felicidade",
+            Name = "Hotel Felicidade",
             Address = addressHotel,
             CostHotel = 300,
             DtRegistration = DateTime.Now,
@@ -304,6 +311,7 @@ internal class Program
         #endregion
 
         #region SELECT HOTEL
+        /*
         new HotelController().FindAll().ForEach(x => Console.WriteLine(x + "\n\n"));
 
         #endregion
@@ -315,22 +323,21 @@ internal class Program
             Console.WriteLine("Sucesso! Update completo!");
         else
             Console.WriteLine("Erro ao inserir registro");
-
+        */
         #endregion
 
         #region DELETE HOTEL
-
+        /*
         if (new HotelController().Delete(8) > 0)
 
             Console.WriteLine("Sucesso! Delete completo!");
         else
             Console.WriteLine("Erro ao inserir registro");
-
+        */
         #endregion
 
 
-        #endregion;
-
+        #endregion
 
 
         #region  PACKAGE
@@ -346,41 +353,42 @@ internal class Program
             DtRegistration = DateTime.Now,
         };
 
-
+        /*
         if (new PackageController().Insert(package) > 0)
             Console.WriteLine("Sucesso! Pacote Inserido!");
         else
             Console.WriteLine("Erro ao inserir registro");
+        */
         #endregion
 
         #region SELECT PACKAGE
+        /*
         new PackageController().FindAll().ForEach(x => Console.WriteLine(x + "\n\n"));
-
+        */
         #endregion
 
         #region UPDATE PACKAGE
-
+        /*
         if (new PackageController().Update(package) > 0)
 
             Console.WriteLine("Sucesso! Update completo!");
         else
             Console.WriteLine("Erro ao inserir registro");
-
+        */
         #endregion
 
         #region DELETE PACKAGE
+        /*
 
-
-        #endregion
-
-
-        if (new HotelController().Delete(8) > 0)
+        if (new PackageController().Delete(8) > 0)
 
             Console.WriteLine("Sucesso! Delete completo!");
         else
             Console.WriteLine("Erro ao inserir registro");
+        */
+        #endregion
 
-        #endregion;
+        #endregion
 
 
     }

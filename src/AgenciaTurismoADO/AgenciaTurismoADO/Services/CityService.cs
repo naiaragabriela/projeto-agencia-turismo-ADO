@@ -6,94 +6,37 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using AgenciaTurismoADO.Models;
+using AgenciaTurismoADO.Repository;
 
 namespace AgenciaTurismoADO.Services
 {
     public class CityService
     {
-        readonly string strConn = @"Server=(localdb)\MSSQLLocalDB;Integrated Security=true;AttachDbFileName=C:\Users\adm\source\repos\projeto-agencia-turismo-ADO\src\banco\TourismAgencyADO.mdf";
-        readonly SqlConnection conn;
-
+        private readonly ICityRepository _repository;
         public CityService()
         {
-            conn = new SqlConnection(strConn);
-            conn.Open();
+            _repository = new CityRepository();
         }
-        public int InsertCity(City city)
+        public int Add(City city)
         {
-            int status = 0;
-            try
-            {
-                string strInsert = "insert into City (NameCity, DtRegistration) " +
-                    "values (@NameCity, @DtRegistration); select cast(scope_identity() as int)";
+          return _repository.Add(city);
+            
+        }
 
-                SqlCommand commandInsert = new SqlCommand(strInsert, conn);
+        public List<City> GetAll()
+        {
+            return _repository.GetAll();
+        }
 
-                commandInsert.Parameters.Add(new SqlParameter("@NameCity", city.NameCity));
-                commandInsert.Parameters.Add(new SqlParameter("@DtRegistration", city.DtRegistration));
-
-
-                status = (int)commandInsert.ExecuteScalar();
-                city.Id = status;
-            }
-            catch (Exception)
-            {
-                status = 0;
-                throw;
-            }
-            finally
-            {
-                conn.Close();
-            }
-            return status;
+        public int Update(City city)
+        {
+            return _repository.Update(city);
         }
 
 
-        public List<City> FindAll()
+        public int Delete(City city)
         {
-            List<City> cityList = new List<City>();
-
-            StringBuilder sb = new StringBuilder();
-            sb.Append("select city.Id, ");
-            sb.Append("       city.NameCity, ");
-            sb.Append("       city.DtRegistration ");
-            sb.Append("  FROM City city");
-
-
-            SqlCommand commandSelect = new SqlCommand(sb.ToString(), conn);
-            SqlDataReader dr = commandSelect.ExecuteReader();
-
-            while (dr.Read())
-            {
-                City city = new City();
-
-                city.Id = (int)dr["Id"];
-                city.NameCity = (string)dr["NameCity"];
-                city.DtRegistration = (DateTime)dr["DtResgistration"];
-
-                cityList.Add(city);
-            }
-            return cityList;
-        }
-
-        public int UpdateCity(City city)
-        {
-            string _update = "update City set NameCity = @NameCity where Id = @id";
-            SqlCommand commandUpdate = new SqlCommand(_update, conn);
-            commandUpdate.Parameters.Add(new SqlParameter("@NameCity", city.NameCity));
-            commandUpdate.Parameters.Add(new SqlParameter("@Id", city.Id));
-
-            return commandUpdate.ExecuteNonQuery();
-        }
-
-
-        public int DeleteCity(int id)
-        {
-            string _delete = "delete from City where Id =@id";
-            SqlCommand commandDelete = new SqlCommand(_delete, conn);
-            commandDelete.Parameters.Add(new SqlParameter("@id", id));
-
-            return (int)commandDelete.ExecuteNonQuery();
+            return _repository.Delete(city);
         }
     }
 }

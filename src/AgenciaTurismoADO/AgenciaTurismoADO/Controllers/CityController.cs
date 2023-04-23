@@ -10,24 +10,24 @@ namespace AgenciaTurismoADO.Controllers
 {
     public class CityController
     {
-        public int Insert(City city)
+        public int Add(City city)
         {
-            return new CityService().InsertCity(city);
+            return new CityService().Add(city);
         }
 
-        public List<City> FindAll()
+        public List<City> GetAll()
         {
-            return new CityService().FindAll();
+            return new CityService().GetAll();
         }
 
         public int Update(City city)
         {
-            return new CityService().UpdateCity(city);
+            return new CityService().Update(city);
         }
 
-        public int Delete(int id)
+        public int Delete(City city)
         {
-            return new CityService().DeleteCity(id);
+            return new CityService().Delete(city);
         }
     }
 }

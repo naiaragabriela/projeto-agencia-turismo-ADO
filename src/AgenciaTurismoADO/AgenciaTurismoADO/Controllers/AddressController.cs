@@ -13,7 +13,7 @@ namespace AgenciaTurismoADO.Controllers
 
         public int Insert(Address address)
         {
-            new CityController().Insert(address.City);
+            new CityController().Add(address.City);
 
             return new AddressService().InsertAddress(address);
         }
