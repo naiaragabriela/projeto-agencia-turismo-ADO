@@ -15,21 +15,21 @@ internal class Program
 
         City cityOne = new City()
         {
-            Id = 1,
+           Id =24,
             NameCity = "Matao",
             DtRegistration = DateTime.Now
         };
 
         City cityTwo = new City()
         {
-            Id = 2,
+         Id = 25,
             NameCity = "Bauru",
             DtRegistration = DateTime.Now
         };
 
         City cityHotel = new City()
         {
-            Id = 3,
+         Id= 26,
             NameCity = "São Paulo",
             DtRegistration = DateTime.Now
         };
@@ -50,16 +50,16 @@ internal class Program
             Console.WriteLine("Sucesso! Cidade Inserida!");
         else
             Console.WriteLine("Erro ao inserir registro");
-        
         */
+        
 
         #endregion
         
 
         #region SELECT CITY
-        
+       /* 
         new CityController().GetAll().ForEach(x => Console.WriteLine(x + "\n\n"));
-        
+        */
         #endregion
 
         #region UPDATE CITY
@@ -96,7 +96,6 @@ internal class Program
 
         Address addressHotel = new Address()
         {
-            Id = 3,
             Street = "Rua Augusta",
             Number = 150,
             Neighborhood = "Viva",
@@ -125,23 +124,23 @@ internal class Program
             PostalCode = "123456-188",
             Complement = "Apto 2, Bloco A",
             DtRegistration = DateTime.Now,
-            City = cityHotel
+            City = cityTwo
         };
 
         /*
 
-        if (new AddressController().Insert(addressHotel) > 0)
-            Console.WriteLine("Sucesso! Cidade Inserida!");
+        if (new AddressController().Add(addressHotel) > 0)
+            Console.WriteLine("Sucesso! Endereço Inserido!");
         else
             Console.WriteLine("Erro ao inserir registro");
 
-        if (new AddressController().Insert(addressSource) > 0)
-            Console.WriteLine("Sucesso! Cidade Inserida!");
+        if (new AddressController().Add(addressOrigin) > 0)
+            Console.WriteLine("Sucesso! Endereço Inserido!");
         else
             Console.WriteLine("Erro ao inserir registro");
 
-        if (new AddressController().Insert(addressDestination) > 0)
-            Console.WriteLine("Sucesso! Cidade Inserida!");
+        if (new AddressController().Add(addressDestination) > 0)
+            Console.WriteLine("Sucesso! Endereço Inserido!");
         else
             Console.WriteLine("Erro ao inserir registro");
 
@@ -150,9 +149,9 @@ internal class Program
         #endregion
 
         #region SELECT ADDRESS
-        /*
-        new AddressController().FindAll().ForEach(x => Console.WriteLine(x + "\n\n"));
-        */
+        
+        new AddressController().GetAll().ForEach(x => Console.WriteLine(x + "\n\n"));
+        
         #endregion
 
         #region UPDATE ADDRESS

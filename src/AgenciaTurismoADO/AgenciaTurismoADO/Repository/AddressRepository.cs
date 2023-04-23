@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,7 +21,16 @@ namespace AgenciaTurismoADO.Repository
             using (var db = new SqlConnection(strConn))
             {
                 db.Open();
-                result = (int)db.ExecuteScalar(Address.INSERT, address);
+                result = (int)db.ExecuteScalar(Address.INSERT, new
+                {
+                    Street = address.Street,
+                    Number = address.Number,
+                    Neighborhood = address.Neighborhood,
+                    PostalCode = address.PostalCode,
+                    Complement = address.Complement,
+                    DtRegistration = address.DtRegistration,
+                    IdCity = address.City.Id
+                });
             }
             return result;
         }
@@ -30,7 +40,15 @@ namespace AgenciaTurismoADO.Repository
             using (var db = new SqlConnection(strConn))
             {
                 db.Open();
-                var address = db.Query<Address>(Address.SELECT);
+
+                var address = db.Query<Address, City, Address>(Address.SELECT,(address, city) => 
+                { 
+                    address.City = city;
+                    return address; 
+                },splitOn: "SplitIdCity");
+
+
+
                 return (List<Address>)address;
             }
 
@@ -44,7 +62,16 @@ namespace AgenciaTurismoADO.Repository
             using (var db = new SqlConnection(strConn))
             {
                 db.Open();
-                result = (int)db.Execute(Address.UPDATE, address);
+                result = (int)db.Execute(Address.UPDATE, new
+                {
+                    Street = address.Street,
+                    Number = address.Number,
+                    Neighborhood = address.Neighborhood,
+                    PostalCode = address.PostalCode,
+                    Complement = address.Complement,
+                    DtRegistration = address.DtRegistration,
+                    IdCity = address.City.Id
+                });
             }
             return result;
         }

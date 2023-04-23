@@ -14,28 +14,12 @@ namespace AgenciaTurismoADO.Models
         public readonly static string INSERT = "INSERT INTO ADDRESS(Street, Number, Neighborhood, PostalCode, Complement, DtRegistration, IdCity) " +
                     "VALUES (@Street, @Number, @Neighborhood, @PostalCode, @Complement, @DtRegistration, @IdCity); " +
                     "select cast(scope_identity() as int)";
- 
-        /*sb.Append("select address.Id AS IdAddress, ");
-            sb.Append("       address.DtRegistration, ");
-            sb.Append("       address.Street, ");
-            sb.Append("       address.Number, ");
-            sb.Append("       address.Neighborhood, ");
-            sb.Append("       address.PostalCode, ");
-            sb.Append("       address.Complement,");
-            sb.Append("       city.Id AS IdCity, ");
-            sb.Append("       city.NameCity, ");
-            sb.Append("       city.DtRegistration As CityRegistration ");
-            sb.Append("       from Address address,");
-            sb.Append("       City city");
-            sb.Append("       where address.IdCity = city.Id");
 
-        */
-                 
 
-        //preciso organizar isso aqui 
 
-        public readonly static string SELECT = "SELECT Id, DtRegistration, Street, Number Neighborhood, PostalCode, Complement FROM ADDRESS" +
-                                               "WHERE Address.IdCity = City.Id";
+        public readonly static string SELECT = "SELECT[Address].[Id] AS Id, [Street],[Number],[Neighborhood],[PostalCode],[Complement],[Address].[DtRegistration]," +
+                                               "[addressCity].[Id] AS SplitIdCity,[addressCity].[Id], [addressCity].[NameCity], [addressCity].[DtRegistration]" +
+                                                "FROM[Address] JOIN[City] addressCity ON address.IdCity = addressCity.Id";
 
         public readonly static string UPDATE = "UPDATE ADDRESS SET Street = @Street" +
                                                "Number = @Number, " +
