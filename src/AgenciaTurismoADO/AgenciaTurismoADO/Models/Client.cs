@@ -10,7 +10,42 @@ namespace AgenciaTurismoADO.Models
     {
 
         #region Constant
+        public readonly static string INSERT = "INSERT INTO CLIENT (Name, Phone, DtRegistration, IdAddress) " +
+                    "VALUES (@Name, @Phone, @DtRegistration,@IdAddress); select cast(scope_identity() as int)";
 
+
+        /*
+        sb.Append("select client.Id AS IdClient, ");
+            sb.Append("       client.Name AS NameClient, ");
+            sb.Append("       client.Phone AS PhoneClient, ");
+            sb.Append("       client.DtRegistration AS ClientRegistration , ");
+            sb.Append("       addressClient.Id AS IdAddress, ");
+            sb.Append("       addressClient.Street As StreetClient, ");
+            sb.Append("       addressClient.Number AS NumberClient, ");
+            sb.Append("       addressClient.Neighborhood AS NeighborhoodClient,");
+            sb.Append("       addressClient.PostalCode AS PostalCodeClient, ");
+            sb.Append("       addressClient.Complement AS ComplementClient, ");
+            sb.Append("       addressClient.DtRegistration AS AddressRegistration , ");
+            sb.Append("       city.Id AS IdCity, ");
+            sb.Append("       city.NameCity As NameCityClient, ");
+            sb.Append("       city.DtRegistration As RegistrationCityClient, ");
+            sb.Append("       FROM [ClIENT] client JOIN [ADDRESS] addressClient ON client.[IdAddress] = addressClient.[Id] ");
+            sb.Append("       JOIN [CITY] city ON city.[Id] = addressClient.[IdCity]");
+
+        */
+        public readonly static string SELECT = "SELECT Id, Name, Phone, IdAddress,Street, Number, Neighborhood, PostalCode,Complement, DtRegsitration" +
+            "FROM CLIENT JOIN ADDRESS ON client.IdAddress = address.Id" +
+            "JOIN CITY ON city.Id = address.Id" ;
+
+
+        public readonly static string UPDATE = "UPDATE CLIENT SET " +
+                                               "Name = @Name," +
+                                               "Phone = @Phone," +
+                                               "Address= IdAddress " +
+                                              " WHERE Id = @id";
+
+
+        public readonly static string DELETE = "DELETE FROM CLIENT WHERE id =@id";
 
         #endregion
 
