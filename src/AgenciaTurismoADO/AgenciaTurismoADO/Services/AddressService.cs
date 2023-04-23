@@ -12,6 +12,10 @@ namespace AgenciaTurismoADO.Services
     public class AddressService
     {
         private readonly IAddressRepository _addressRepository;
+        public AddressService()
+        {
+            _addressRepository = new AddressRepository();
+        }
         public int Add(Address address)
         {
          return _addressRepository.Add(address);

@@ -12,13 +12,16 @@ namespace AgenciaTurismoADO.Services
 {
     public class TicketService
     {
-      private readonly ITicketRepository _ticketRepository;
+        private readonly ITicketRepository _ticketRepository;
 
-
+        public TicketService()
+        {
+            _ticketRepository = new TicketRepository();
+        }
         public int Add(Ticket ticket)
         {
-          
-            return _ticketRepository.Add(ticket);   
+
+            return _ticketRepository.Add(ticket);
         }
         public List<Ticket> GetAll()
         {
@@ -28,7 +31,7 @@ namespace AgenciaTurismoADO.Services
         public int Update(Ticket ticket)
         {
 
-          return _ticketRepository.Update(ticket);
+            return _ticketRepository.Update(ticket);
         }
 
         public int Delete(Ticket ticket)

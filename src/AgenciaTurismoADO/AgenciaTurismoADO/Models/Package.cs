@@ -11,10 +11,6 @@ namespace AgenciaTurismoADO.Models
         #region Constant
         public readonly static string INSERT = "INSERT INTO Package (IdHotel, IdTicket, DtRegistration, Cost, IdClient)" +
                     "VALUES (@IdHotel, @IdTicket, @DtRegistration, @Cost, @IdClient); select cast(scope_identity() as int)";
-
-
-
-
         /*
 
         sb.Append("select package.Id AS IdPackage ");

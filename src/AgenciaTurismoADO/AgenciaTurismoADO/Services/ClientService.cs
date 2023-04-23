@@ -14,6 +14,11 @@ namespace AgenciaTurismoADO.Services
     {
         private readonly IClientRepository _clientRepository;
 
+        public ClientService()
+        {
+            _clientRepository = new ClientRepository();
+        }
+
         public int Add(Client client)
         {
           return _clientRepository.Add(client);

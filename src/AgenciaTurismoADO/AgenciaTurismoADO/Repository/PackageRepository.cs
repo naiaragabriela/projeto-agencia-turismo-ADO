@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AgenciaTurismoADO.Models;
+using Dapper;
 
 namespace AgenciaTurismoADO.Repository
 {
@@ -13,21 +15,48 @@ namespace AgenciaTurismoADO.Repository
 
         public int Add(Package package)
         {
-            throw new NotImplementedException();
+            int result = 0;
+
+            using (var db = new SqlConnection(strConn))
+            {
+                db.Open();
+                result = (int)db.ExecuteScalar(Package.INSERT, package);
+            }
+            return result;
         }
 
         public List<Package> GetAll()
         {
-            throw new NotImplementedException();
+            using (var db = new SqlConnection(strConn))
+            {
+                db.Open();
+                var package = db.Query<Package>(Package.SELECT);
+                return (List<Package>)package;
+            }
         }
 
         public int Update(Package package)
         {
-            throw new NotImplementedException();
+            int result = 0;
+
+            using (var db = new SqlConnection(strConn))
+            {
+                db.Open();
+                result = (int)db.Execute(Package.UPDATE, package);
+            }
+            return result;
         }
+
         public int Delete(Package package)
         {
-            throw new NotImplementedException();
+            int result = 0;
+
+            using (var db = new SqlConnection(strConn))
+            {
+                db.Open();
+                result = (int)db.Execute(Package.DELETE, package);
+            }
+            return result;
         }
 
     }

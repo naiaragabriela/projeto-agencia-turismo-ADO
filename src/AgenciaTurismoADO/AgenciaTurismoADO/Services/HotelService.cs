@@ -16,6 +16,10 @@ namespace AgenciaTurismoADO.Services
 
         private readonly IHotelRepository _hotelRepository;
 
+        public HotelService()
+        {
+            _hotelRepository = new HotelRepository();
+        }
 
         public int Add(Hotel hotel)
         {

@@ -16,6 +16,10 @@ namespace AgenciaTurismoADO.Services
     {
         private readonly IPackageRepository _packageRepository;
 
+        public PackageService()
+        {
+            _packageRepository = new PackageRepository();
+        }
         public int Add(Package package)
         {
             return _packageRepository.Add(package);
