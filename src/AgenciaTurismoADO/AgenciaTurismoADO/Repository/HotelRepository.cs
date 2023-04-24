@@ -54,10 +54,17 @@ namespace AgenciaTurismoADO.Repository
             using (var db = new SqlConnection(strConn))
             {
                 db.Open();
-                result = (int)db.Execute(Hotel.UPDATE, hotel);
+                result = (int)db.ExecuteScalar(Hotel.UPDATE, new
+                {
+                    Name = hotel.Name,
+                    CostHotel = hotel.CostHotel,
+                    DtRegistration = hotel.DtRegistration,
+                    IdAddress = hotel.Address.Id
+                });
             }
             return result;
         }
+    
         public int Delete(Hotel hotel)
         {
             int result = 0;

@@ -20,7 +20,14 @@ namespace AgenciaTurismoADO.Repository
             using (var db = new SqlConnection(strConn))
             {
                 db.Open();
-                result = (int)db.ExecuteScalar(Ticket.INSERT, ticket);
+                result = (int)db.ExecuteScalar(Ticket.INSERT, new
+                {
+                    IdOrigin = ticket.Origin.Id,
+                    IdDestination = ticket.Destination.Id,
+                    DtRegistration = ticket.DtRegistration,
+                    CostTicket = ticket.CostTicket
+
+                });
             }
             return result;
         }
@@ -30,21 +37,38 @@ namespace AgenciaTurismoADO.Repository
             using (var db = new SqlConnection(strConn))
             {
                 db.Open();
-                var ticket = db.Query<City>(Ticket.SELECT);
+                var ticket= db.Query<Ticket, Address, City, Address, City, Ticket>(Ticket.SELECT, (ticket, addressOrigin, cityOrigin,
+                    addressDestination, cityDestination) =>
+                {
+                    addressOrigin.City = cityOrigin;
+                    ticket.Origin = addressOrigin;
+                    addressDestination.City = cityDestination;
+                    ticket.Destination= addressDestination;
+
+                    return ticket;
+                }, splitOn: "SplitOrigin, SplitCityOrigin, SplitDestination, SplitCityDestination");
+
                 return (List<Ticket>)ticket;
             }
         }
         public int Update(Ticket ticket)
         {
+
             int result = 0;
 
             using (var db = new SqlConnection(strConn))
             {
                 db.Open();
-                result = (int)db.Execute(Ticket.UPDATE, ticket);
+                result = (int)db.ExecuteScalar(Ticket.UPDATE, new
+                {
+                    IdOrigin = ticket.Origin.Id,
+                    IdDestination = ticket.Destination.Id,
+                    DtRegistration = ticket.DtRegistration,
+                    CostTicket = ticket.CostTicket
+
+                });
             }
             return result;
-
         }
 
         public int Delete(Ticket ticket)

@@ -13,44 +13,20 @@ namespace AgenciaTurismoADO.Models
                        "VALUES (@IdOrigin, @IdDestination, @DtRegistration, @CostTicket); select cast(scope_identity() as int)";
 
 
+        public readonly static string SELECT = "SELECT[Ticket].[Id] AS Id, [CostTicket], [Ticket].[DtRegistration]," +
+         " [Ticket].[IdOrigin] AS SplitOrigin, [AddressOrigin].[Id] AS Id, [AddressOrigin].[Street], [AddressOrigin].[Number]," +
+            " [AddressOrigin].[Neighborhood], [AddressOrigin].[PostalCode], [AddressOrigin].[Complement], [AddressOrigin].[DtRegistration], " +
+            "[CityOrigin].[Id] AS SplitCityOrigin, [CityOrigin].[Id] AS Id, [CityOrigin].[NameCity], [CityOrigin].[DtRegistration], " +
+            "[Ticket].[IdDestination] AS SplitDestination, [AddressDestination].[Id] AS Id, [AddressDestination].[Street]," +
+            " [AddressDestination].[Number] ,[AddressDestination].[Neighborhood], [AddressDestination].[PostalCode], [AddressDestination].[Complement]," +
+            " [AddressDestination].[DtRegistration], [CityDestination].[Id] AS SplitCityDestination, [CityDestination].[Id] AS Id, " +
+            "[CityDestination].[NameCity], [CityDestination].[DtRegistration] " +
+             "FROM[Ticket]" +
+            "JOIN[Address] AddressOrigin ON IdOrigin = AddressOrigin.Id " +
+            "JOIN[City] CityOrigin ON AddressOrigin.IdCity = CityOrigin.Id " +
+            "JOIN[Address] AddressDestination ON IdDestination = AddressDestination.Id " +
+            "JOIN[City] CityDestination ON AddressDestination.IdCity = CityDestination.Id";
 
-
-
-
-
-
-        /*sb.Append("select ticket.Id AS IdTicket, ");
-            sb.Append("       ticket.DtRegistration AS TicketResgistration,");
-            sb.Append("       ticket.CostTicket AS CostTicket, ");
-            sb.Append("       addressOrigin.Id AS IdOrigin, ");
-            sb.Append("       addressOrigin.Street AS OriginStreet, ");
-            sb.Append("       addressOrigin.Number AS OriginNumber, ");
-            sb.Append("       addressOrigin.Neighborhood AS OriginNeighborhood, ");
-            sb.Append("       addressOrigin.PostalCode AS OriginPostalCode, ");
-            sb.Append("       addressOrigin.Complement AS OriginComplemnt, ");
-            sb.Append("       addressOrigin.DtRegistration AS AddressOriginResgistration,");
-            sb.Append("       cityOrigin.Id AS IdCityOrigin, ");
-            sb.Append("       cityOrigin.NameCity AS NameCityOrigin, ");
-            sb.Append("       cityOrigin.DtRegistration AS CityOriginResgistration,");
-            sb.Append("       addressDestination.Id AS IdDestination, ");
-            sb.Append("       addressDestination.Street AS DestinationStreet, ");
-            sb.Append("       addressDestination.Number AS DestinationNumber, ");
-            sb.Append("       addressDestination.Neighborhood AS DestinationNeighborhood, ");
-            sb.Append("       addressDestination.PostalCode As DestinationPostalCode, ");
-            sb.Append("       addressDestination.Complement AS DestinationComplement, ");
-            sb.Append("       addressDestination.DtRegistration AS AddressDestinationResgistration,");
-            sb.Append("       cityDestination.Id AS IdCityDestination, ");
-            sb.Append("       cityDestination.NameCity AS NameCityDestination, ");
-            sb.Append("       cityDestination.Registration AS CityOriginRegistration, ");
-            sb.Append("       FROM [TICKET] client JOIN [ADDRESS] addressOrigin ON ticket.[IdOrigin] = address.[Id] "); 
-            sb.Append("       JOIN [CITY] cityOrigin ON city.[Id] = address.[IdCity]");
-            sb.Append("       JOIN [ADDRESS] addressDestination ON ticket.[IdDestination] = address.IdCity");
-            sb.Append("       JOIN [CITY] cityDestination ON city.Id = address.IdCity");
-
-
-        */
-
-        public readonly static string SELECT =" ";
 
         public readonly static string UPDATE = "UPDATE Ticket SET " +
                                                "Origin = @IdOrigin, " +

@@ -257,8 +257,8 @@ internal class Program
         };
 
         /*
-        if (new TicketController().Insert(ticketOne) > 0)
-            Console.WriteLine("Sucesso! Cidade Inserida!");
+        if (new TicketController().Add(ticketOne) > 0)
+            Console.WriteLine("Sucesso! Ticket Inserido!");
         else
             Console.WriteLine("Erro ao inserir registro");
         */
@@ -267,9 +267,9 @@ internal class Program
         #endregion
 
         #region SELECT TICKET
-        /*
-        new TicketController().FindAll().ForEach(x => Console.WriteLine(x + "\n\n"));
-        */
+        
+        new TicketController().GetAll().ForEach(x => Console.WriteLine(x + "\n\n"));
+        
         #endregion
 
         #region UPDATE TICKET
@@ -319,9 +319,9 @@ internal class Program
         #endregion
 
         #region SELECT HOTEL
-        
+        /*
         new HotelController().GetAll().ForEach(x => Console.WriteLine(x + "\n\n"));
-       
+       */
         #endregion
 
         #region UPDATE HOTEL
