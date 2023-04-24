@@ -187,6 +187,7 @@ internal class Program
         #region CREATE CLIENT
         Client clientOne = new Client()
         {
+            Id = 9,
             Name = "Gustavo",
             Phone = "7070-7070",
             DtRegistration = DateTime.Now,
@@ -195,6 +196,7 @@ internal class Program
 
         Client clientTwo = new Client()
         {
+            Id = 10,
             Name = "ANA",
             Phone = "1010-3030",
             DtRegistration = DateTime.Now,
@@ -250,6 +252,7 @@ internal class Program
         #region CREATE TICKET
         Ticket ticketOne = new Ticket
         {
+            Id= 1,
             Origin = addressOrigin,
             Destination = addressDestination,
             CostTicket = 200,
@@ -263,13 +266,12 @@ internal class Program
             Console.WriteLine("Erro ao inserir registro");
         */
 
-
         #endregion
 
         #region SELECT TICKET
-        
+        /*
         new TicketController().GetAll().ForEach(x => Console.WriteLine(x + "\n\n"));
-        
+        */
         #endregion
 
         #region UPDATE TICKET
@@ -303,6 +305,7 @@ internal class Program
         #region CREATE HOTEL
         Hotel hotel = new Hotel()
         {
+            Id =1,
             Name = "Hotel Felicidade",
             Address = addressHotel,
             CostHotel = 300,
@@ -362,7 +365,7 @@ internal class Program
         };
 
         /*
-        if (new PackageController().Insert(package) > 0)
+        if (new PackageController().Add(package) > 0)
             Console.WriteLine("Sucesso! Pacote Inserido!");
         else
             Console.WriteLine("Erro ao inserir registro");
@@ -370,9 +373,9 @@ internal class Program
         #endregion
 
         #region SELECT PACKAGE
-        /*
-        new PackageController().FindAll().ForEach(x => Console.WriteLine(x + "\n\n"));
-        */
+        
+        new PackageController().GetAll().ForEach(x => Console.WriteLine(x + "\n\n"));
+        Console.ReadKey();
         #endregion
 
         #region UPDATE PACKAGE
