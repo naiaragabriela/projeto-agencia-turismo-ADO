@@ -9,10 +9,7 @@ namespace AgenciaTurismoADO.Models
     public class Client
     {
 
-        #region Constant
-
-
-        #endregion
+   
 
         #region Properties
 

@@ -11,6 +11,12 @@ namespace AgenciaTurismoADO.Controllers
     public class ClientController
     {
 
+        public readonly static string SELECT = "SELECT[Client].[Id] AS Id, [Name], [Phone],[Client].[DtRegistration]," +
+          "[AddressClient].[Id] AS Id, [Street],[Number],[Neighborhood],[PostalCode],[Complement],[AddressClient].[DtRegistration]," +
+          "[AddressCity].[Id] AS Id, [AddressCity].[NameCity], [AddressCity].[DtRegistration] " +
+           "FROM[Client] JOIN[Address] AddressClient ON IdAddress = AddressClient.Id " +
+           "JOIN[City] AddressCity ON AddressClient.IdCity= AddressCity.Id";
+
         public int Insert(Client client)
         {
            
@@ -20,7 +26,7 @@ namespace AgenciaTurismoADO.Controllers
 
         public List<Client> FindAll()
         {
-            return new ClientService().FindAll();
+            return new ClientService().FindAll(SELECT);
         }
 
 

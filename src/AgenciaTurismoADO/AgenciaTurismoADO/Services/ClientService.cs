@@ -48,54 +48,37 @@ namespace AgenciaTurismoADO.Services
             }
             return status;
         }
-        public List<Client> FindAll()
+        public List<Client> FindAll(string SELECT)
         {
             List<Client> clientList = new List<Client>();
 
-            StringBuilder sb = new StringBuilder();
-            sb.Append("select client.Id AS IdClient, ");
-            sb.Append("       client.Name AS NameClient, ");
-            sb.Append("       client.Phone AS PhoneClient, ");
-            sb.Append("       client.DtRegistration AS ClientRegistration , ");
-            sb.Append("       addressClient.Id AS IdAddress, ");
-            sb.Append("       addressClient.Street As StreetClient, ");
-            sb.Append("       addressClient.Number AS NumberClient, ");
-            sb.Append("       addressClient.Neighborhood AS NeighborhoodClient,");
-            sb.Append("       addressClient.PostalCode AS PostalCodeClient, ");
-            sb.Append("       addressClient.Complement AS ComplementClient, ");
-            sb.Append("       addressClient.DtRegistration AS AddressRegistration , ");
-            sb.Append("       city.Id AS IdCity, ");
-            sb.Append("       city.NameCity As NameCityClient, ");
-            sb.Append("       city.DtRegistration As RegistrationCityClient, ");
-            sb.Append("       FROM [ClIENT] client JOIN [ADDRESS] addressClient ON client.[IdAddress] = addressClient.[Id] ");
-            sb.Append("       JOIN [CITY] city ON city.[Id] = addressClient.[IdCity]");
-          
+      
 
 
-            SqlCommand commandSelect = new SqlCommand(sb.ToString(), conn);
+            SqlCommand commandSelect = new SqlCommand(SELECT), conn);
             SqlDataReader dr = commandSelect.ExecuteReader();
 
             while (dr.Read())
             {
                 Client client = new Client();
 
-                client.Id = (int)dr["IdClient"];
-                client.Name = (string)dr["NameClient"];
-                client.Phone = (string)dr["PhoneClient"];
-                client.DtRegistration = (DateTime)dr["HotelResitration"];
+                client.Id = (int)dr["Id"];
+                client.Name = (string)dr["Name"];
+                client.Phone = (string)dr["Phone"];
+                client.DtRegistration = (DateTime)dr["DTRegistration"];
                 client.Address = new Address()
                 {
-                    Id = (int)dr["IdAddress"],
-                    Street = (string)dr["StreetClient"],
-                    Number = (int)dr["NumberClient"],
-                    Neighborhood = (string)dr["NeighborhoodClient"],
-                    PostalCode = (string)dr["PostalCodeClient"],
-                    Complement = (string)dr["ComplementClient"],
+                    Id = (int)dr["Id"],
+                    Street = (string)dr["Street"],
+                    Number = (int)dr["Number"],
+                    Neighborhood = (string)dr["Neighborhood"],
+                    PostalCode = (string)dr["PostalCode"],
+                    Complement = (string)dr["Complement"],
                     City = new City()
                     {
-                        Id = (int)dr["IdCity"],
-                        NameCity = (string)dr["NameCityClient"],
-                        DtRegistration = (DateTime)dr["RegistrationCityClient"]
+                        Id = (int)dr["Id"],
+                        NameCity = (string)dr["NameCityt"],
+                        DtRegistration = (DateTime)dr["DtRegistration"]
                     }
                 };
                 clientList.Add(client);
