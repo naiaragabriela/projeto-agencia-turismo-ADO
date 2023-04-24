@@ -11,23 +11,32 @@ namespace AgenciaTurismoADO.Controllers
     public class AddressController
     {
 
+        public readonly static string SELECT = "SELECT[Address].[Id] AS Id, [Street],[Number],[Neighborhood],[PostalCode],[Complement],[Address].[DtRegistration]," +
+                                               "[addressCity].[Id] AS SplitIdCity,[addressCity].[Id], [addressCity].[NameCity], [addressCity].[DtRegistration]" +
+                                                "FROM[Address] JOIN[City] addressCity ON address.IdCity = addressCity.Id";
+
+        public readonly AddressService _addressService;
+        public AddressController()
+        {
+            _addressService = new AddressService();
+        }
+
         public int Insert(Address address)
         {
-            new CityController().Insert(address.City);
-
-            return new AddressService().InsertAddress(address);
+            
+            return _addressService.InsertAddress(address);
         }
 
         public List<Address> FindAll()
         {
-            return new AddressService().FindAll();
+            return _addressService.FindAll(SELECT);
         }
+
         public int Update(Address address)
         {
-            new CityController().Update(address.City);
-
             return new AddressService().Update(address);
         }
+
         public int Delete(int id)
         {
             return new AddressService().Delete(id);

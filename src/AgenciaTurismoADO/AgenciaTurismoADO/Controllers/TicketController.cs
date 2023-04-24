@@ -12,8 +12,6 @@ namespace AgenciaTurismoADO.Controllers
     {
         public int Insert(Ticket ticket)
         {
-            new AddressController().Insert(ticket.Origin);
-            new AddressController().Insert(ticket.Destination);
 
             return new TicketService().InsertTicket(ticket);
         }
@@ -25,9 +23,7 @@ namespace AgenciaTurismoADO.Controllers
 
         public int Update(Ticket ticket)
         {
-            new AddressController().Update(ticket.Origin);
-            new AddressController().Update(ticket.Destination);
-
+         
             return new TicketService().Update(ticket);
         }
 

@@ -13,7 +13,7 @@ namespace AgenciaTurismoADO.Controllers
 
         public int Insert(Client client)
         {
-            new AddressController().Insert(client.Address);
+           
 
             return new ClientService().InsertClient(client);
         }
@@ -26,7 +26,7 @@ namespace AgenciaTurismoADO.Controllers
 
         public int Update(Client client)
         {
-            new AddressController().Update(client.Address);
+            
 
             return new ClientService().Update(client);
         }

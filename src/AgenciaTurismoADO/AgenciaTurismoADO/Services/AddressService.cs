@@ -57,34 +57,18 @@ namespace AgenciaTurismoADO.Services
             return status;
         }
 
-        public List<Address> FindAll()
+        public List<Address> FindAll(string SELECT)
         {
             List<Address> addressList = new List<Address>();
 
-            StringBuilder sb = new StringBuilder();
-            sb.Append("select address.Id AS IdAddress, ");
-            sb.Append("       address.DtRegistration, ");
-            sb.Append("       address.Street, ");
-            sb.Append("       address.Number, ");
-            sb.Append("       address.Neighborhood, ");
-            sb.Append("       address.PostalCode, ");
-            sb.Append("       address.Complement,");
-            sb.Append("       city.Id AS IdCity, ");
-            sb.Append("       city.NameCity, ");
-            sb.Append("       city.DtRegistration As CityRegistration ");
-            sb.Append("       from Address address,");
-            sb.Append("       City city");
-            sb.Append("       where address.IdCity = city.Id");
-
-
-            SqlCommand commandSelect = new SqlCommand(sb.ToString(), conn);
+            SqlCommand commandSelect = new SqlCommand(SELECT, conn);
             SqlDataReader dr = commandSelect.ExecuteReader();
 
             while (dr.Read())
             {
                 Address address = new Address();
 
-                address.Id = (int)dr["IdAddress"];
+                address.Id = (int)dr["Id"];
                 address.DtRegistration = (DateTime)dr["DtRegistration"];
                 address.Street = (string)dr["Street"];
                 address.Number = (int)dr["Number"];

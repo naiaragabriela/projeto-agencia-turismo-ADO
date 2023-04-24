@@ -13,7 +13,7 @@ namespace AgenciaTurismoADO.Controllers
 
         public int Insert(Hotel hotel)
         {
-            new AddressController().Insert(hotel.Address);
+       
 
             return new HotelService().InsertHotel(hotel);
         }
@@ -26,7 +26,7 @@ namespace AgenciaTurismoADO.Controllers
         public int Update(Hotel hotel)
 
         {
-            new AddressController().Update(hotel.Address);
+            
             return new HotelService().Update(hotel);
         }
 

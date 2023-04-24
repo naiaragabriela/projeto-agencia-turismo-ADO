@@ -12,10 +12,7 @@ namespace AgenciaTurismoADO.Controllers
     {
         public int Insert(Package package)
         {
-            new HotelController().Insert(package.Hotel);
-            new TicketController().Insert(package.Ticket);
-            new ClientController().Insert(package.Client);
-
+         
             return new PackageService().InsertPackage(package);
         }
 
@@ -26,9 +23,7 @@ namespace AgenciaTurismoADO.Controllers
 
         public int Update(Package package)
         {
-            new HotelController().Update(package.Hotel);
-            new TicketController().Update(package.Ticket);
-            new ClientController().Update(package.Client);
+        
 
             return new PackageService().Update(package);
         }

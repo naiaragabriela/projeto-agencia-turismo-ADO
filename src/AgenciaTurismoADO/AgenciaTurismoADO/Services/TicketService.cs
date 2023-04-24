@@ -77,7 +77,7 @@ namespace AgenciaTurismoADO.Services
             sb.Append("       addressDestination.DtRegistration AS AddressDestinationResgistration,");
             sb.Append("       cityDestination.Id AS IdCityDestination, ");
             sb.Append("       cityDestination.NameCity AS NameCityDestination, ");
-            sb.Append("       cityDestination.Registration AS CityOriginRegistration, ");
+            sb.Append("       cityDestination.Registration AS CityOriginRegistration ");
             sb.Append("       FROM [TICKET] client JOIN [ADDRESS] addressOrigin ON ticket.[IdOrigin] = address.[Id] "); 
             sb.Append("       JOIN [CITY] cityOrigin ON city.[Id] = address.[IdCity]");
             sb.Append("       JOIN [ADDRESS] addressDestination ON ticket.[IdDestination] = address.IdCity");
