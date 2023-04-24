@@ -43,11 +43,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CONTROLLERS\Controllers\AddressController.cs" />
+    <Compile Include="CONTROLLERS\Controllers\CityController.cs" />
+    <Compile Include="CONTROLLERS\Controllers\ClientController.cs" />
+    <Compile Include="CONTROLLERS\Controllers\HotelController.cs" />
+    <Compile Include="CONTROLLERS\Controllers\PackageController.cs" />
+    <Compile Include="CONTROLLERS\Controllers\TicketController.cs" />
+    <Compile Include="MODELS\Models\Address.cs" />
+    <Compile Include="MODELS\Models\City.cs" />
+    <Compile Include="MODELS\Models\Client.cs" />
+    <Compile Include="MODELS\Models\Hotel.cs" />
+    <Compile Include="MODELS\Models\Package.cs" />
+    <Compile Include="MODELS\Models\Ticket.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
