@@ -147,9 +147,9 @@ internal class Program
         #endregion
 
         #region SELECT ADDRESS
-        /*
-        new AddressController().FindAll().ForEach(x => Console.WriteLine(x + "\n\n"));
-        */
+        
+        new AddressController().FindAll(SELECT).ForEach(x => Console.WriteLine(x + "\n\n"));
+        
         #endregion
 
         #region UPDATE ADDRESS
