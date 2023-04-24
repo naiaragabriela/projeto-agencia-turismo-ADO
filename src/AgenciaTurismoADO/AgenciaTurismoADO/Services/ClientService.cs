@@ -52,10 +52,10 @@ namespace AgenciaTurismoADO.Services
         {
             List<Client> clientList = new List<Client>();
 
-      
 
 
-            SqlCommand commandSelect = new SqlCommand(SELECT), conn);
+
+            SqlCommand commandSelect = new SqlCommand(SELECT, conn);
             SqlDataReader dr = commandSelect.ExecuteReader();
 
             while (dr.Read())
