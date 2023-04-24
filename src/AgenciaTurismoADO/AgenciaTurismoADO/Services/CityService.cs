@@ -69,7 +69,7 @@ namespace AgenciaTurismoADO.Services
 
                 city.Id = (int)dr["Id"];
                 city.NameCity = (string)dr["NameCity"];
-                city.DtRegistration = (DateTime)dr["DtResgistration"];
+                city.DtRegistration = (DateTime)dr["DtRegistration"];
 
                 cityList.Add(city);
             }

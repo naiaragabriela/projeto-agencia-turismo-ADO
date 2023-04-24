@@ -16,12 +16,12 @@ namespace AgenciaTurismoADO.Controllers
     public class TicketController
     {
 
-        public readonly static string SELECT = @" SELECT [Ticket].[Id] AS Id, [CostTicket], [Ticket].[DtRegistration],
-         [AddressOrigin].[Id] AS Id, [AddressOrigin].[Street], [AddressOrigin].[Number],
-             [AddressOrigin].[Neighborhood], [AddressOrigin].[PostalCode], [AddressOrigin].[Complement], [AddressOrigin].[DtRegistration], 
+        public readonly static string SELECT = @" SELECT [Ticket].[Id] AS Id, [CostTicket], [Ticket].[DtRegistration], 
+            [AddressOrigin].[Id] AS Id, [AddressOrigin].[Street], [AddressOrigin].[Number],
+            [AddressOrigin].[Neighborhood], [AddressOrigin].[PostalCode], [AddressOrigin].[Complement], [AddressOrigin].[DtRegistration], 
             [CityOrigin].[Id] AS Id, [CityOrigin].[NameCity], [CityOrigin].[DtRegistration], 
             [AddressDestination].[Id] AS Id, [AddressDestination].[Street],[AddressDestination].[Number] ,[AddressDestination].[Neighborhood],
-         [CityDestination].[Id] AS Id,[CityDestination].[NameCity], [CityDestination].[DtRegistration] 
+            [CityDestination].[Id] AS Id,[CityDestination].[NameCity], [CityDestination].[DtRegistration] 
             FROM[Ticket]
             JOIN[Address] AddressOrigin ON IdOrigin = AddressOrigin.Id  
             JOIN[City] CityOrigin ON AddressOrigin.IdCity = CityOrigin.Id  

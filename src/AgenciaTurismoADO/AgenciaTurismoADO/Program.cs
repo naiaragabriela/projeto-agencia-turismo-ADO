@@ -15,7 +15,6 @@ internal class Program
 
         City cityOne = new City()
         {
-            Id = 1,
             NameCity = "Matao",
             DtRegistration = DateTime.Now
         };
@@ -56,7 +55,11 @@ internal class Program
         #region SELECT CITY
         /*
         new CityController().FindAll().ForEach(x => Console.WriteLine(x + "\n\n"));
+
+        Console.ReadKey();
+
         */
+
         #endregion
 
         #region UPDATE CITY
@@ -93,7 +96,6 @@ internal class Program
 
         Address addressHotel = new Address()
         {
-            Id = 3,
             Street = "Rua Augusta",
             Number = 150,
             Neighborhood = "Viva",
@@ -149,6 +151,7 @@ internal class Program
         #region SELECT ADDRESS
         /*
         new AddressController().FindAll().ForEach(x => Console.WriteLine(x + "\n\n"));
+        Console.ReadKey();
         */
         #endregion
 
@@ -212,7 +215,9 @@ internal class Program
         #region SELECT CLIENT
         /*
         new ClientController().FindAll().ForEach(x => Console.WriteLine(x + "\n\n"));
+         Console.ReadKey();
         */
+
         #endregion
 
         #region UPDATE CLIENT
@@ -263,7 +268,8 @@ internal class Program
         #region SELECT TICKET
         /*
         new TicketController().FindAll().ForEach(x => Console.WriteLine(x + "\n\n"));
-        */
+        Console.ReadKey();
+         */
         #endregion
 
         #region UPDATE TICKET
@@ -308,7 +314,8 @@ internal class Program
         #region SELECT HOTEL
         /*
         new HotelController().FindAll().ForEach(x => Console.WriteLine(x + "\n\n"));
-        */
+        Console.ReadKey();
+         */
         #endregion
 
         #region UPDATE HOTEL
@@ -361,7 +368,8 @@ internal class Program
         #region SELECT PACKAGE
         /*
         new PackageController().FindAll().ForEach(x => Console.WriteLine(x + "\n\n"));
-        */
+        Console.ReadKey();
+         */
         #endregion
 
         #region UPDATE PACKAGE

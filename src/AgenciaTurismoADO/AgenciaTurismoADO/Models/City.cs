@@ -25,7 +25,9 @@ namespace AgenciaTurismoADO.Models
         #region Methods
         public override string ToString()
         {
-            return "Nome da cidade: " + NameCity;
+            return "Id: " + Id +
+                "\nNome da cidade: " + NameCity +
+                "\nData de Registro: " + DtRegistration;
         }
         #endregion
     }
