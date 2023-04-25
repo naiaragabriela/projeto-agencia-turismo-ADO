@@ -1,4 +1,5 @@
 ﻿using System.Data.SqlClient;
+using AgenciaTurismoADO.Context;
 using AgenciaTurismoADO.Models;
 using Dapper;
 
@@ -6,53 +7,44 @@ namespace AgenciaTurismoADO.Repository
 {
     public class CityRepository : ICityRepository
     {
-        readonly string strConn = @"Server=(localdb)\MSSQLLocalDB;Integrated Security=true;AttachDbFileName=C:\Users\adm\source\repos\projeto-agencia-turismo-ADO\src\banco\TourismAgencyADO.mdf";
-
         public int Add(City city)
         {
-            int result = 0;
-
-            using (SqlConnection db = new(strConn))
+            using (var context = new AgencyTourismContext())
             {
-                db.Open();
-                result = (int)db.ExecuteScalar(City.INSERT, city);
+                
+                context.Cities.Add(city);
+                context.SaveChanges();
             }
-            return result;
+            return city.Id;
         }
 
         public List<City> GetAll()
         {
-            using (SqlConnection db = new(strConn))
+            using (var context = new AgencyTourismContext())
             {
-                db.Open();
-                IEnumerable<City> city = db.Query<City>(City.SELECT);
-                return (List<City>)city;
+                return context.Cities.ToList();
             }
         }
 
         public int Update(City city)
         {
-            int result = 0;
-
-            using (SqlConnection db = new(strConn))
+            using (var context = new AgencyTourismContext())
             {
-                db.Open();
-                result = db.Execute(City.UPDATE, city);
+                context.Cities.Update(city);
+                context.SaveChanges();
             }
-            return result;
+            return city.Id;
 
         }
 
         public int Delete(City city)
         {
-            int result = 0;
-
-            using (SqlConnection db = new(strConn))
+            using (var context = new AgencyTourismContext())
             {
-                db.Open();
-                result = db.Execute(City.DELETE, city);
+                context.Cities.Remove(city);
+                context.SaveChanges();
             }
-            return result;
+            return city.Id;
 
         }
     }

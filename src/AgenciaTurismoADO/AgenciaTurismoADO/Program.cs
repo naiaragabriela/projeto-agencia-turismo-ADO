@@ -14,21 +14,21 @@ internal class Program
 
         City cityOne = new()
         {
-            Id = 24,
+      
             NameCity = "Matao",
             DtRegistration = DateTime.Now
         };
 
         City cityTwo = new()
         {
-            Id = 25,
+            
             NameCity = "Bauru",
             DtRegistration = DateTime.Now
         };
 
         City cityHotel = new()
         {
-            Id = 26,
+       
             NameCity = "São Paulo",
             DtRegistration = DateTime.Now
         };
@@ -49,16 +49,16 @@ internal class Program
             Console.WriteLine("Sucesso! Cidade Inserida!");
         else
             Console.WriteLine("Erro ao inserir registro");
+        
         */
-
 
         #endregion
 
 
         #region SELECT CITY
-        /* 
+        /*
          new CityController().GetAll().ForEach(x => Console.WriteLine(x + "\n\n"));
-         */
+        */
         #endregion
 
         #region UPDATE CITY
