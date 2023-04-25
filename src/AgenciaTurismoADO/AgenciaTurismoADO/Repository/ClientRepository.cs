@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Net;
-using System.Numerics;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
+﻿using System.Data.SqlClient;
 using AgenciaTurismoADO.Models;
 using Dapper;
 
@@ -20,7 +12,7 @@ namespace AgenciaTurismoADO.Repository
         {
             int result = 0;
 
-            using (var db = new SqlConnection(strConn))
+            using (SqlConnection db = new(strConn))
             {
                 db.Open();
                 result = (int)db.ExecuteScalar(Client.INSERT, new
@@ -36,10 +28,10 @@ namespace AgenciaTurismoADO.Repository
 
         public List<Client> GetAll()
         {
-            using (var db = new SqlConnection(strConn))
+            using (SqlConnection db = new(strConn))
             {
                 db.Open();
-                var client = db.Query<Client, Address, City, Client>(Client.SELECT, (client, address, city) =>
+                IEnumerable<Client> client = db.Query<Client, Address, City, Client>(Client.SELECT, (client, address, city) =>
                 {
                     address.City = city;
                     client.Address = address;
@@ -48,18 +40,18 @@ namespace AgenciaTurismoADO.Repository
 
                 return (List<Client>)client;
             };
-            
+
         }
 
         public int Update(Client client)
         {
             int result = 0;
 
-        using (var db = new SqlConnection(strConn))
-        {
-            db.Open();
-            result = (int)db.Execute(Client.UPDATE, client);
-        }
+            using (SqlConnection db = new(strConn))
+            {
+                db.Open();
+                result = db.Execute(Client.UPDATE, client);
+            }
             return result;
         }
 
@@ -67,10 +59,10 @@ namespace AgenciaTurismoADO.Repository
         {
             int result = 0;
 
-            using (var db = new SqlConnection(strConn))
+            using (SqlConnection db = new(strConn))
             {
                 db.Open();
-                result = (int)db.Execute(Client.DELETE, client);
+                result = db.Execute(Client.DELETE, client);
             }
             return result;
         }

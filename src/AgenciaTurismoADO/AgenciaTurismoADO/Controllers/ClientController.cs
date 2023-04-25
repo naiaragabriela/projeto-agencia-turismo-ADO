@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AgenciaTurismoADO.Models;
+﻿using AgenciaTurismoADO.Models;
 using AgenciaTurismoADO.Services;
 
 namespace AgenciaTurismoADO.Controllers
@@ -13,7 +8,7 @@ namespace AgenciaTurismoADO.Controllers
 
         public int Add(Client client)
         {
-            
+
 
             return new ClientService().Add(client);
         }

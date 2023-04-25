@@ -1,19 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace AgenciaTurismoADO.Models
+﻿namespace AgenciaTurismoADO.Models
 {
     public class Ticket
     {
         #region Constant
-        public readonly static string INSERT = "INSERT INTO Ticket (IdOrigin, IdDestination, DtRegistration, CostTicket) " +
+        public static readonly string INSERT = "INSERT INTO Ticket (IdOrigin, IdDestination, DtRegistration, CostTicket) " +
                        "VALUES (@IdOrigin, @IdDestination, @DtRegistration, @CostTicket); select cast(scope_identity() as int)";
 
 
-        public readonly static string SELECT = "SELECT[Ticket].[Id] AS Id, [CostTicket], [Ticket].[DtRegistration]," +
+        public static readonly string SELECT = "SELECT[Ticket].[Id] AS Id, [CostTicket], [Ticket].[DtRegistration]," +
          " [Ticket].[IdOrigin] AS SplitOrigin, [AddressOrigin].[Id] AS Id, [AddressOrigin].[Street], [AddressOrigin].[Number]," +
             " [AddressOrigin].[Neighborhood], [AddressOrigin].[PostalCode], [AddressOrigin].[Complement], [AddressOrigin].[DtRegistration], " +
             "[CityOrigin].[Id] AS SplitCityOrigin, [CityOrigin].[Id] AS Id, [CityOrigin].[NameCity], [CityOrigin].[DtRegistration], " +
@@ -28,14 +22,14 @@ namespace AgenciaTurismoADO.Models
             "JOIN[City] CityDestination ON AddressDestination.IdCity = CityDestination.Id";
 
 
-        public readonly static string UPDATE = "UPDATE Ticket SET " +
+        public static readonly string UPDATE = "UPDATE Ticket SET " +
                                                "Origin = @IdOrigin, " +
                                                "Destination = @IdDestination, " +
                                                "CostTicket = @CostTicket " +
                                                 "WHERE Id = @id";
 
 
-        public readonly static string DELETE = "DELETE FROM Ticket WHERE id =@id";
+        public static readonly string DELETE = "DELETE FROM Ticket WHERE id =@id";
 
         #endregion
 
@@ -50,9 +44,9 @@ namespace AgenciaTurismoADO.Models
         #region Methods
         public override string ToString()
         {
-            return "Id da Passagem: "+ Id+
+            return "Id da Passagem: " + Id +
                    "\nCusto da Passagem: " + CostTicket +
-                   "\nData de Registro da Passagem: "+ DtRegistration +
+                   "\nData de Registro da Passagem: " + DtRegistration +
                    "\nOrigem da Passagem: " + Origin.ToString() +
                    "\nDestino da Passagem: " + Destination.ToString();
         }

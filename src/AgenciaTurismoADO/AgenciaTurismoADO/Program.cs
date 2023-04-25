@@ -1,5 +1,4 @@
-﻿using System.Net.Sockets;
-using AgenciaTurismoADO.Controllers;
+﻿using AgenciaTurismoADO.Controllers;
 using AgenciaTurismoADO.Models;
 
 internal class Program
@@ -13,23 +12,23 @@ internal class Program
 
         #region CREATE CITY
 
-        City cityOne = new City()
+        City cityOne = new()
         {
-           Id =24,
+            Id = 24,
             NameCity = "Matao",
             DtRegistration = DateTime.Now
         };
 
-        City cityTwo = new City()
+        City cityTwo = new()
         {
-         Id = 25,
+            Id = 25,
             NameCity = "Bauru",
             DtRegistration = DateTime.Now
         };
 
-        City cityHotel = new City()
+        City cityHotel = new()
         {
-         Id= 26,
+            Id = 26,
             NameCity = "São Paulo",
             DtRegistration = DateTime.Now
         };
@@ -51,15 +50,15 @@ internal class Program
         else
             Console.WriteLine("Erro ao inserir registro");
         */
-        
+
 
         #endregion
-        
+
 
         #region SELECT CITY
-       /* 
-        new CityController().GetAll().ForEach(x => Console.WriteLine(x + "\n\n"));
-        */
+        /* 
+         new CityController().GetAll().ForEach(x => Console.WriteLine(x + "\n\n"));
+         */
         #endregion
 
         #region UPDATE CITY
@@ -94,7 +93,7 @@ internal class Program
 
         #region CREATE ADDRESS
 
-        Address addressHotel = new Address()
+        Address addressHotel = new()
         {
             Id = 14,
             Street = "Rua Augusta",
@@ -106,7 +105,7 @@ internal class Program
             City = cityHotel
         };
 
-        Address addressOrigin = new Address()
+        Address addressOrigin = new()
         {
             Id = 15,
             Street = "Rua Feliz",
@@ -118,7 +117,7 @@ internal class Program
             City = cityOne
         };
 
-        Address addressDestination = new Address()
+        Address addressDestination = new()
         {
             Id = 16,
             Street = "Rua Origem",
@@ -185,7 +184,7 @@ internal class Program
         #region  CLIENT
 
         #region CREATE CLIENT
-        Client clientOne = new Client()
+        Client clientOne = new()
         {
             Id = 9,
             Name = "Gustavo",
@@ -194,7 +193,7 @@ internal class Program
             Address = addressOrigin
         };
 
-        Client clientTwo = new Client()
+        Client clientTwo = new()
         {
             Id = 10,
             Name = "ANA",
@@ -250,9 +249,9 @@ internal class Program
         #region  TICKET
 
         #region CREATE TICKET
-        Ticket ticketOne = new Ticket
+        Ticket ticketOne = new()
         {
-            Id= 1,
+            Id = 1,
             Origin = addressOrigin,
             Destination = addressDestination,
             CostTicket = 200,
@@ -303,20 +302,20 @@ internal class Program
         #region HOTEL
 
         #region CREATE HOTEL
-        Hotel hotel = new Hotel()
+        Hotel hotel = new()
         {
-            Id =1,
+            Id = 1,
             Name = "Hotel Felicidade",
             Address = addressHotel,
             CostHotel = 300,
             DtRegistration = DateTime.Now,
         };
-/*
-        if (new HotelController().Add(hotel) > 0)
-            Console.WriteLine("Sucesso! Hotel Inserido!");
-        else
-            Console.WriteLine("Erro ao inserir registro");
-*/
+        /*
+                if (new HotelController().Add(hotel) > 0)
+                    Console.WriteLine("Sucesso! Hotel Inserido!");
+                else
+                    Console.WriteLine("Erro ao inserir registro");
+        */
 
 
         #endregion
@@ -355,7 +354,7 @@ internal class Program
 
         #region CREATE PACKAGE
 
-        Package package = new Package()
+        Package package = new()
         {
             Hotel = hotel,
             Ticket = ticketOne,
@@ -373,9 +372,9 @@ internal class Program
         #endregion
 
         #region SELECT PACKAGE
-        
+
         new PackageController().GetAll().ForEach(x => Console.WriteLine(x + "\n\n"));
-        Console.ReadKey();
+        _ = Console.ReadKey();
         #endregion
 
         #region UPDATE PACKAGE

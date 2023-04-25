@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AgenciaTurismoADO.Models;
+﻿using AgenciaTurismoADO.Models;
 using AgenciaTurismoADO.Repository;
 
 namespace AgenciaTurismoADO.Services
@@ -18,7 +12,7 @@ namespace AgenciaTurismoADO.Services
         }
         public int Add(Address address)
         {
-         return _addressRepository.Add(address);
+            return _addressRepository.Add(address);
         }
 
         public List<Address> GetAll()

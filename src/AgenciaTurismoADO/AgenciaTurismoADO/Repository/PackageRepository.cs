@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Net.Sockets;
-using System.Runtime.InteropServices.ObjectiveC;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Data.SqlClient;
 using AgenciaTurismoADO.Models;
 using Dapper;
 
@@ -19,7 +12,7 @@ namespace AgenciaTurismoADO.Repository
         {
             int result = 0;
 
-            using (var db = new SqlConnection(strConn))
+            using (SqlConnection db = new(strConn))
             {
                 db.Open();
                 result = (int)db.ExecuteScalar(Package.INSERT, new
@@ -29,31 +22,31 @@ namespace AgenciaTurismoADO.Repository
                     DtRegistration = package.DtRegistration,
                     Cost = package.Cost,
                     IdClient = package.Client.Id,
-                }) ;
+                });
             }
             return result;
         }
 
         public List<Package> GetAll()
         {
-            using (var db = new SqlConnection(strConn))
+            using (SqlConnection db = new(strConn))
             {
                 db.Open();
-                var types = new[] { typeof(Package), typeof(Client), typeof(Address), typeof(City), typeof(Hotel), typeof(Address), typeof(City), typeof(Ticket), typeof(Address), typeof(City), typeof(Address), typeof(City)};
-                var pack = db.Query<Package>(Package.SELECT, types, (obj) => 
+                Type[] types = new[] { typeof(Package), typeof(Client), typeof(Address), typeof(City), typeof(Hotel), typeof(Address), typeof(City), typeof(Ticket), typeof(Address), typeof(City), typeof(Address), typeof(City) };
+                IEnumerable<Package> pack = db.Query<Package>(Package.SELECT, types, (obj) =>
                 {
-                    var package = obj[0] as Package;
-                    var client = obj[1] as Client;
-                    var addressClient = obj[2] as Address;
-                    var cityClient = obj[3] as City;
-                    var hotel = obj[4] as Hotel;
-                    var addressHotel = obj[5] as Address;
-                    var cityHotel = obj[6] as City;
-                    var ticket = obj[7] as Ticket;
-                    var addressOrigin = obj[8] as Address;
-                    var cityOrigin = obj[9] as City;
-                    var addressDestination = obj[10] as Address;
-                    var cityDestination = obj[11] as City;
+                    Package? package = obj[0] as Package;
+                    Client? client = obj[1] as Client;
+                    Address? addressClient = obj[2] as Address;
+                    City? cityClient = obj[3] as City;
+                    Hotel? hotel = obj[4] as Hotel;
+                    Address? addressHotel = obj[5] as Address;
+                    City? cityHotel = obj[6] as City;
+                    Ticket? ticket = obj[7] as Ticket;
+                    Address? addressOrigin = obj[8] as Address;
+                    City? cityOrigin = obj[9] as City;
+                    Address? addressDestination = obj[10] as Address;
+                    City? cityDestination = obj[11] as City;
 
                     client.Address = addressClient;
                     addressClient.City = cityClient;
@@ -77,7 +70,7 @@ namespace AgenciaTurismoADO.Repository
         {
             int result = 0;
 
-            using (var db = new SqlConnection(strConn))
+            using (SqlConnection db = new(strConn))
             {
                 db.Open();
                 result = (int)db.ExecuteScalar(Package.UPDATE, new
@@ -96,10 +89,10 @@ namespace AgenciaTurismoADO.Repository
         {
             int result = 0;
 
-            using (var db = new SqlConnection(strConn))
+            using (SqlConnection db = new(strConn))
             {
                 db.Open();
-                result = (int)db.Execute(Package.DELETE, package);
+                result = db.Execute(Package.DELETE, package);
             }
             return result;
         }

@@ -1,20 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace AgenciaTurismoADO.Models
+﻿namespace AgenciaTurismoADO.Models
 {
     public class Package
     {
         #region Constant
-        public readonly static string INSERT = "INSERT INTO Package (IdHotel, IdTicket, DtRegistration, Cost, IdClient)" +
+        public static readonly string INSERT = "INSERT INTO Package (IdHotel, IdTicket, DtRegistration, Cost, IdClient)" +
                     "VALUES (@IdHotel, @IdTicket, @DtRegistration, @Cost, @IdClient); select cast(scope_identity() as int)";
 
 
 
-        public readonly static string SELECT = @"SELECT [Package].Id AS Id, [Package].Cost, [Package].DtRegistration, [Client].[Id] AS SplitClient,  
+        public static readonly string SELECT = @"SELECT [Package].Id AS Id, [Package].Cost, [Package].DtRegistration, [Client].[Id] AS SplitClient,  
 [Client].[Id] AS Id, [Client].[Name], [Client].[Phone], [Client].[DtRegistration], [AddressClient].[Id] AS SplitAddressClient, 
 [AddressClient].[Id] AS Id, [AddressClient].[Street],[AddressClient].[Number],[AddressClient].[Neighborhood], [AddressClient].[PostalCode],
 [AddressClient].[Complement],[AddressClient].[DtRegistration], [AddressCity].[Id] AS SplitCityClient, [AddressCity].[Id] AS Id, [AddressCity].[NameCity],
@@ -42,14 +36,14 @@ JOIN [Address] AddressDestination ON [Ticket].IdDestination = [AddressDestinatio
 JOIN [City] CityDestination ON [AddressDestination].IdCity = [CityDestination].Id ";
 
 
-        public readonly static string UPDATE = "UPDATE Package SET " +
+        public static readonly string UPDATE = "UPDATE Package SET " +
                                                "Hotel = @IdHotel" +
                                                "Ticket = @IdTicket" +
                                                "Client = @IdClient" +
                                                "Cost = @Cost" +
                                                  "WHERE Id = @id";
 
-        public readonly static string DELETE = "DELETE FROM PACKAGE WHERE Id = @Id";
+        public static readonly string DELETE = "DELETE FROM PACKAGE WHERE Id = @Id";
 
         #endregion
 
@@ -65,9 +59,9 @@ JOIN [City] CityDestination ON [AddressDestination].IdCity = [CityDestination].I
         #region Methods
         public override string ToString()
         {
-            return "Id do Pacote: "+ Id+
+            return "Id do Pacote: " + Id +
                    "\nCusto do Pacote: " + Cost +
-                   "\nData de Registro do Pacote: "+ DtRegistration +
+                   "\nData de Registro do Pacote: " + DtRegistration +
                    "\nHotel: " + Hotel.ToString() +
                    "\n Passagem: " + Ticket.ToString() +
                    "\n Cliente: " + Client.ToString();

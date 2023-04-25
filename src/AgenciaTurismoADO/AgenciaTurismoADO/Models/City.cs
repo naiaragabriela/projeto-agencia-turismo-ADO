@@ -1,23 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace AgenciaTurismoADO.Models
+﻿namespace AgenciaTurismoADO.Models
 {
     public class City
     {
         #region Constant
 
-        public readonly static string INSERT = "INSERT INTO CITY (NameCity, DtRegistration) VALUES (@NameCity,@DtRegistration);" +
+        public static readonly string INSERT = "INSERT INTO CITY (NameCity, DtRegistration) VALUES (@NameCity,@DtRegistration);" +
             "select cast(scope_identity() as int)";
 
-        public readonly static string SELECT = "SELECT Id, NameCity, DtRegistration FROM CITY";
+        public static readonly string SELECT = "SELECT Id, NameCity, DtRegistration FROM CITY";
 
-        public readonly static string UPDATE = "UPDATE CITY SET NameCity = @NameCity where Id = @id";
+        public static readonly string UPDATE = "UPDATE CITY SET NameCity = @NameCity where Id = @id";
 
-        public readonly static string DELETE = "DELETE FROM CITY WHERE Id = @Id";
+        public static readonly string DELETE = "DELETE FROM CITY WHERE Id = @Id";
         #endregion
 
 
@@ -32,7 +26,7 @@ namespace AgenciaTurismoADO.Models
         #region Methods
         public override string ToString()
         {
-            return "Id da cidade: "+ Id +
+            return "Id da cidade: " + Id +
                 "\nNome da cidade: " + NameCity +
                 "\nData do registro da Cidade: " + DtRegistration;
         }

@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Data.SqlClient;
 using AgenciaTurismoADO.Models;
 using Dapper;
 
 namespace AgenciaTurismoADO.Repository
 {
-    public class TicketRepository: ITicketRepository
+    public class TicketRepository : ITicketRepository
     {
         readonly string strConn = @"Server=(localdb)\MSSQLLocalDB;Integrated Security=true;AttachDbFileName=C:\Users\adm\source\repos\projeto-agencia-turismo-ADO\src\banco\TourismAgencyADO.mdf";
 
@@ -17,7 +12,7 @@ namespace AgenciaTurismoADO.Repository
         {
             int result = 0;
 
-            using (var db = new SqlConnection(strConn))
+            using (SqlConnection db = new(strConn))
             {
                 db.Open();
                 result = (int)db.ExecuteScalar(Ticket.INSERT, new
@@ -34,16 +29,16 @@ namespace AgenciaTurismoADO.Repository
 
         public List<Ticket> GetAll()
         {
-            using (var db = new SqlConnection(strConn))
+            using (SqlConnection db = new(strConn))
             {
                 db.Open();
-                var ticket= db.Query<Ticket, Address, City, Address, City, Ticket>(Ticket.SELECT, (ticket, addressOrigin, cityOrigin,
+                IEnumerable<Ticket> ticket = db.Query<Ticket, Address, City, Address, City, Ticket>(Ticket.SELECT, (ticket, addressOrigin, cityOrigin,
                     addressDestination, cityDestination) =>
                 {
                     addressOrigin.City = cityOrigin;
                     ticket.Origin = addressOrigin;
                     addressDestination.City = cityDestination;
-                    ticket.Destination= addressDestination;
+                    ticket.Destination = addressDestination;
 
                     return ticket;
                 }, splitOn: "SplitOrigin, SplitCityOrigin, SplitDestination, SplitCityDestination");
@@ -56,7 +51,7 @@ namespace AgenciaTurismoADO.Repository
 
             int result = 0;
 
-            using (var db = new SqlConnection(strConn))
+            using (SqlConnection db = new(strConn))
             {
                 db.Open();
                 result = (int)db.ExecuteScalar(Ticket.UPDATE, new
@@ -75,10 +70,10 @@ namespace AgenciaTurismoADO.Repository
         {
             int result = 0;
 
-            using (var db = new SqlConnection(strConn))
+            using (SqlConnection db = new(strConn))
             {
                 db.Open();
-                result = (int)db.Execute(Ticket.DELETE,ticket);
+                result = db.Execute(Ticket.DELETE, ticket);
             }
             return result;
 

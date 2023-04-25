@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
-using AgenciaTurismoADO.Models;
+﻿using AgenciaTurismoADO.Models;
 using AgenciaTurismoADO.Repository;
 
 namespace AgenciaTurismoADO.Services
@@ -19,8 +12,8 @@ namespace AgenciaTurismoADO.Services
         }
         public int Add(City city)
         {
-          return _repository.Add(city);
-            
+            return _repository.Add(city);
+
         }
 
         public List<City> GetAll()

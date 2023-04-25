@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
-using AgenciaTurismoADO.Controllers;
-using AgenciaTurismoADO.Models;
+﻿using AgenciaTurismoADO.Models;
 using AgenciaTurismoADO.Repository;
 
 namespace AgenciaTurismoADO.Services
@@ -23,7 +15,7 @@ namespace AgenciaTurismoADO.Services
 
         public int Add(Hotel hotel)
         {
-           return _hotelRepository.Add(hotel);
+            return _hotelRepository.Add(hotel);
 
         }
 
@@ -35,7 +27,7 @@ namespace AgenciaTurismoADO.Services
         public int Update(Hotel hotel)
         {
 
-        return _hotelRepository.Update(hotel);
+            return _hotelRepository.Update(hotel);
         }
 
         public int Delete(Hotel hotel)
