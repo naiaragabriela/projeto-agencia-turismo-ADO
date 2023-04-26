@@ -22,7 +22,7 @@ namespace AgenciaTurismoADO.Repository
                 db.Open();
                 result = (int)db.ExecuteScalar(Hotel.INSERT, new
                 {
-                    Name = hotel.Name,
+                    NameHotel = hotel.NameHotel,
                     CostHotel = hotel.CostHotel,
                     DtRegistration = hotel.DtRegistration,
                     IdAddress= hotel.Address.Id
@@ -56,7 +56,7 @@ namespace AgenciaTurismoADO.Repository
                 db.Open();
                 result = (int)db.ExecuteScalar(Hotel.UPDATE, new
                 {
-                    Name = hotel.Name,
+                    NameHotel = hotel.NameHotel,
                     CostHotel = hotel.CostHotel,
                     DtRegistration = hotel.DtRegistration,
                     IdAddress = hotel.Address.Id

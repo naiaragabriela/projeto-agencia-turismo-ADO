@@ -9,13 +9,13 @@ namespace AgenciaTurismoADO.Models
     public class Hotel
     {
         #region Constant
-        public readonly static string INSERT = "INSERT INTO HOTEL(Name, IdAddress, CostHotel, DtRegistration) " +
-                       "VALUES (@Name, @IdAddress, @CostHotel, @DtRegistration); select cast(scope_identity() as int)";
+        public readonly static string INSERT = "INSERT INTO HOTEL(NameHotel, IdAddress, CostHotel, DtRegistration) " +
+                       "VALUES (@NameHotel, @IdAddress, @CostHotel, @DtRegistration); select cast(scope_identity() as int)";
 
      
 
 
-        public readonly static string SELECT = "SELECT [Hotel].[Id] AS Id, [Hotel].[Name], [Hotel].[CostHotel],[Hotel].[DtRegistration]," +
+        public readonly static string SELECT = "SELECT [Hotel].[Id] AS Id, [Hotel].[NameHotel], [Hotel].[CostHotel],[Hotel].[DtRegistration]," +
             "[AddressHotel].[Id] AS SplitAddress, [AddressHotel].[Id] AS Id, [Street],[Number],[Neighborhood],[PostalCode],[Complement]," +
             "[AddressHotel].[DtRegistration],[AddressCity].[Id] AS SplitCity, [AddressCity].[Id] AS Id, [AddressCity].[NameCity], [AddressCity].[DtRegistration] " +
             "FROM [Hotel] JOIN [Address] AddressHotel ON IdAddress = AddressHotel.Id " +
@@ -35,7 +35,7 @@ namespace AgenciaTurismoADO.Models
 
         #region Properties
         public int Id { get; set; }
-        public string Name { get; set; }
+        public string NameHotel { get; set; }
         public Address Address { get; set; }
         public decimal CostHotel { get; set; }
         public DateTime DtRegistration { get; set; }
@@ -46,7 +46,7 @@ namespace AgenciaTurismoADO.Models
         public override string ToString()
         {
             return "Id do Hotel: " + Id+
-                   "Nome:" + Name +
+                   "Nome do Hotel:" + NameHotel +
                    "\nCusto do Hotel: " + CostHotel +
                    "\nData de Registro do Hotel: "+ DtRegistration +
                    "\nEndereço: " + Address.ToString();

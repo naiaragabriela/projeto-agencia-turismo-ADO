@@ -18,7 +18,7 @@ namespace AgenciaTurismoADO.Models
 [Client].[Id] AS Id, [Client].[Name], [Client].[Phone], [Client].[DtRegistration], [AddressClient].[Id] AS SplitAddressClient, 
 [AddressClient].[Id] AS Id, [AddressClient].[Street],[AddressClient].[Number],[AddressClient].[Neighborhood], [AddressClient].[PostalCode],
 [AddressClient].[Complement],[AddressClient].[DtRegistration], [AddressCity].[Id] AS SplitCityClient, [AddressCity].[Id] AS Id, [AddressCity].[NameCity],
-[AddressCity].[DtRegistration], [Hotel].[Id] AS SplitHotel, [Hotel].[Id] AS Id,[Hotel].[Name], [CostHotel], [Hotel].[DtRegistration],[AddressHotel].[Id] AS SplitAddressHotel, 
+[AddressCity].[DtRegistration], [Hotel].[Id] AS SplitHotel, [Hotel].[Id] AS Id,[Hotel].[NameHotel], [CostHotel], [Hotel].[DtRegistration],[AddressHotel].[Id] AS SplitAddressHotel, 
 [AddressHotel].[Id] AS Id, [AddressHotel].[Street], [AddressHotel].[Number],[AddressHotel].[Neighborhood],[AddressHotel].[PostalCode], 
 [AddressHotel].[Complement], [AddressHotel].[DtRegistration], [AddressCityHotel].[Id] AS SplitCityHotel, [AddressCityHotel].[Id] AS Id,
 [AddressCityHotel].[NameCity], [AddressCityHotel].[DtRegistration],[Ticket].[Id] AS SplitTicket, [Ticket].[Id] AS Id, [CostTicket], 

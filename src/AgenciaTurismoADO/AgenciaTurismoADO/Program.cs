@@ -34,7 +34,7 @@ internal class Program
             DtRegistration = DateTime.Now
         };
 
-        /*
+        
         
         if (new CityController().Add(cityOne) > 0)
             Console.WriteLine("Sucesso! Cidade Inserida!");
@@ -50,7 +50,7 @@ internal class Program
             Console.WriteLine("Sucesso! Cidade Inserida!");
         else
             Console.WriteLine("Erro ao inserir registro");
-        */
+        
         
 
         #endregion
@@ -130,7 +130,7 @@ internal class Program
             City = cityTwo
         };
 
-        /*
+        
 
         if (new AddressController().Add(addressHotel) > 0)
             Console.WriteLine("Sucesso! Endereço Inserido!");
@@ -147,7 +147,7 @@ internal class Program
         else
             Console.WriteLine("Erro ao inserir registro");
 
-        */
+        
 
         #endregion
 
@@ -203,7 +203,7 @@ internal class Program
             Address = addressDestination
         };
 
-        /*
+        
          if (new ClientController().Add(clientOne) > 0)
              Console.WriteLine("Sucesso! Cliente Inserido!");
          else
@@ -213,7 +213,7 @@ internal class Program
              Console.WriteLine("Sucesso! Cliente Inserido!");
          else
              Console.WriteLine("Erro ao inserir registro");
-        */
+        
         #endregion
 
         #region SELECT CLIENT
@@ -259,12 +259,12 @@ internal class Program
             DtRegistration = DateTime.Now,
         };
 
-        /*
+        
         if (new TicketController().Add(ticketOne) > 0)
             Console.WriteLine("Sucesso! Ticket Inserido!");
         else
             Console.WriteLine("Erro ao inserir registro");
-        */
+        
 
         #endregion
 
@@ -306,17 +306,17 @@ internal class Program
         Hotel hotel = new Hotel()
         {
             Id =1,
-            Name = "Hotel Felicidade",
+            NameHotel = "Hotel Felicidade",
             Address = addressHotel,
             CostHotel = 300,
             DtRegistration = DateTime.Now,
         };
-/*
+
         if (new HotelController().Add(hotel) > 0)
             Console.WriteLine("Sucesso! Hotel Inserido!");
         else
             Console.WriteLine("Erro ao inserir registro");
-*/
+
 
 
         #endregion
@@ -364,18 +364,19 @@ internal class Program
             DtRegistration = DateTime.Now,
         };
 
-        /*
+        
         if (new PackageController().Add(package) > 0)
             Console.WriteLine("Sucesso! Pacote Inserido!");
         else
             Console.WriteLine("Erro ao inserir registro");
-        */
+        
         #endregion
 
         #region SELECT PACKAGE
         
         new PackageController().GetAll().ForEach(x => Console.WriteLine(x + "\n\n"));
         Console.ReadKey();
+
         #endregion
 
         #region UPDATE PACKAGE
